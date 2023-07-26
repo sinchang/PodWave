@@ -98,7 +98,7 @@ function AboutSection(
         <ActivityIcon className="h-3 w-3 fill-stone-300 text-blue-500 dark:fill-neutral-600 dark:text-blue-400" />
         <span className="ml-2.5">{t('about')}</span>
       </h2>
-      <p
+      <div
         className={clsxm(
           'mt-2 text-base leading-7 text-stone-700 dark:text-neutral-400',
           !isExpanded && 'lg:line-clamp-4'
@@ -124,7 +124,7 @@ function AboutSection(
             {compiler(content)}
           </ReactMarkdown>
         )}
-      </p>
+      </div>
       {!isExpanded && isTooLong && (
         <button
           type="button"
@@ -141,7 +141,7 @@ function AboutSection(
 export function PodcastLayout({
   podcast,
   children,
-  podcastConfig
+  podcastConfig,
 }: {
   podcast: Podcast
   children: React.ReactNode
@@ -154,7 +154,7 @@ export function PodcastLayout({
       <header className="bg-stone-50 dark:bg-neutral-900 lg:fixed lg:inset-y-0 lg:left-0 lg:flex lg:w-112 lg:items-start lg:overflow-y-auto xl:w-120">
         <div className="relative z-10 mx-auto px-4 pb-4 pt-10 sm:px-6 md:max-w-2xl md:px-4 lg:min-h-full lg:flex-auto lg:border-x lg:border-stone-200 lg:px-8 lg:py-12 dark:lg:border-neutral-800 xl:px-12">
           <Link
-            href="/"
+            href={`/podcast/${podcastConfig.itunesId}`}
             className="relative mx-auto block w-48 overflow-hidden rounded-lg bg-stone-200 shadow-xl shadow-stone-200 dark:bg-neutral-800 dark:shadow-neutral-800 sm:w-64 sm:rounded-xl lg:w-auto lg:rounded-2xl"
             aria-label={t('homepage')}
           >
@@ -172,7 +172,7 @@ export function PodcastLayout({
           </Link>
           <div className="mt-10 text-center lg:mt-12 lg:text-left">
             <p className="text-xl font-bold text-stone-900 dark:text-neutral-100">
-              <Link href="/">{podcast.title}</Link>
+              <Link href={`/podcast/${podcastConfig.itunesId}`}>{podcast.title}</Link>
             </p>
           </div>
           <AboutSection className="mt-12 hidden lg:block">
@@ -202,7 +202,7 @@ export function PodcastLayout({
             </h2>
             <div className="mt-2 flex gap-6 text-sm font-bold leading-7 text-stone-900">
               {podcastConfig.hosts.map((host, hostIndex) => (
-                <Fragment key={hostIndex}>
+                <Fragment key={host.name}>
                   {hostIndex !== 0 && (
                     <span
                       aria-hidden="true"
@@ -237,7 +237,7 @@ export function PodcastLayout({
           </h2>
           <div className="mt-2 flex gap-6 text-sm font-bold leading-7 text-stone-900 dark:text-neutral-200">
             {podcastConfig.hosts?.map((host, hostIndex) => (
-              <Fragment key={hostIndex}>
+              <Fragment key={host.name}>
                 {hostIndex !== 0 && (
                   <span
                     aria-hidden="true"

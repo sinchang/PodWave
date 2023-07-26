@@ -1,4 +1,3 @@
-import { platform } from 'os'
 import getPodcastPlatformLinks from 'podcast-platform-links'
 import PodcastIndexClient from 'podcastdx-client'
 import { cache } from 'react'
@@ -13,14 +12,7 @@ const client = new PodcastIndexClient({
 export const getPodcastConfig = cache(async (itunesId: number) => {
   const podcast = await client.podcastByItunesId(itunesId)
   const platforms = await getPodcastPlatformLinks(itunesId, podcast.feed.url)
-  console.log(platforms)
   return {
-    /**
-     * Step 1. Add your podcast directories here
-     * We support links from:
-     *   Apple Podcasts, Google Podcasts, Spotify, Stitcher, Overcast,
-     *   Pocket Casts Castro, 小宇宙, 哔哩哔哩, YouTube
-     */
     platforms: [
       ...platforms.map((platform) => ({
         name: platform.platform,
@@ -31,9 +23,6 @@ export const getPodcastConfig = cache(async (itunesId: number) => {
         link: podcast.feed.url,
       },
     ],
-    /**
-     * Step 2. Add your podcast hosts here
-     */
     hosts: [
       {
         name: podcast.feed.author,
@@ -41,6 +30,7 @@ export const getPodcastConfig = cache(async (itunesId: number) => {
       },
     ],
     rssUrl: podcast.feed.url,
+    itunesId: podcast.feed.itunesId
   } as PodcastConfig
 })
 

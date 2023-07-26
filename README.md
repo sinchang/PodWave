@@ -1,19 +1,20 @@
-## Podcast Studio
+## Podvoic
 
-This is a template for a podcast website. It is built with:
+> Discover, listen, and engage with the most captivating podcasts from diverse genres in one place.
+
+It is built with:
 - [Next.js](https://nextjs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 
 ## Getting Started
 
-1. First, you'd need a podcast RSS url and the final production domain URL for your website.
+You need to update the env.
 
 ```dotenv
-NEXT_PUBLIC_PODCAST_RSS="yoururl"
-NEXT_PUBLIC_OG_URL="https://example.com"
+PODCAST_INDEX_API_KEY=
+PODCAST_INDEX_API_SECRET=
+NEXT_PUBLIC_OG_URL=http://localhost:3000
 ```
-
-2. Open `podcast.config.ts` to configure your podcast.
 
 ## Running Locally
 ```bash
@@ -22,3 +23,7 @@ pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Credit
+
+The repo is based on [cali-fm](https://github.com/CaliCastle/cali-fm)

@@ -37,7 +37,7 @@ export function EpisodePage({ episode, id }: { episode: Episode, id: number }) {
       <Container>
         <header className="relative flex flex-col">
           <Link
-            href="/"
+            href={`/podcast/${id}`}
             className="absolute -top-10 left-0 flex w-full items-center text-sm text-stone-400 hover:text-stone-500 dark:text-neutral-500 dark:hover:text-neutral-400"
           >
             <ChevronLeftIcon className="mr-1 h-4 w-4" />

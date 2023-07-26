@@ -13,6 +13,7 @@ type PodcastConfig = {
   platforms: Platform[]
   hosts: Host[]
   rssUrl: string
+  itunesId: number
 }
 
 type Podcast = {
