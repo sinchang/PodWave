@@ -32,8 +32,8 @@ function EpisodeRow({ episode, id }: { episode: Episode, id: number }) {
     () => ({
       title: episode.title,
       audio: {
-        src: episode.enclosure.url,
-        type: episode.enclosure.type,
+        src: episode.enclosure?.url,
+        type: episode.enclosure?.type,
       },
       link: `/podcast/${id}/${episode.id}`,
     }),
@@ -41,6 +41,8 @@ function EpisodeRow({ episode, id }: { episode: Episode, id: number }) {
   )
   const player = useAudioPlayer(audioPlayerData)
   const t = useTranslations('IndexPage')
+
+  if (!episode.enclosure?.url) return null
 
   return (
     <article
