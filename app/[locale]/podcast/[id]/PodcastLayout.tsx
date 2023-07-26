@@ -11,9 +11,8 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
 import { AudioPlayer } from '~/app/(audio)/AudioPlayer'
-import { PodcastDirectoryLink } from '~/app/[locale]/PodcastDirectoryLink'
+import { PodcastDirectoryLink } from '~/app/[locale]/podcast/[id]/PodcastDirectoryLink'
 import { ThemeSwitcher } from '~/app/[locale]/ThemeSwitcher'
-import { podcastConfig } from '~/podcast.config'
 
 function randomBetween(min: number, max: number, seed = 1) {
   return () => {
@@ -142,9 +141,11 @@ function AboutSection(
 export function PodcastLayout({
   podcast,
   children,
+  podcastConfig
 }: {
   podcast: Podcast
   children: React.ReactNode
+  podcastConfig: PodcastConfig
 }) {
   const t = useTranslations('Layout')
 
@@ -187,16 +188,11 @@ export function PodcastLayout({
               role="list"
               className="mt-4 flex flex-wrap items-center justify-center gap-4 py-5 text-base font-medium leading-7 text-stone-700 dark:text-neutral-300 lg:justify-start lg:py-0"
             >
-              {podcastConfig.directories.map((directory, idx) => (
-                <li key={idx} className="flex">
-                  <PodcastDirectoryLink>{directory}</PodcastDirectoryLink>
+              {podcastConfig.platforms.map((platform, idx) => (
+                <li key={platform.name} className="flex">
+                  <PodcastDirectoryLink platform={platform}></PodcastDirectoryLink>
                 </li>
               ))}
-              <li key="rss" className="flex">
-                <PodcastDirectoryLink isRSS>
-                  {process.env.NEXT_PUBLIC_PODCAST_RSS ?? ''}
-                </PodcastDirectoryLink>
-              </li>
             </ul>
           </section>
           <section className="mt-10 hidden lg:mt-12 lg:block">

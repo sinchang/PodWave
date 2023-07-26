@@ -1,10 +1,6 @@
-import { Episodes } from '~/app/[locale]/Episodes'
-import { getPodcastEpisodes } from '~/podcast.config'
 
-export default async function IndexPage() {
-  const episodes = await getPodcastEpisodes()
+export default function IndexPage() {
 
-  return <Episodes episodes={episodes} />
+  return <div>We are building</div>
 }
 
-export const revalidate = 10
