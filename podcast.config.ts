@@ -1,37 +1,44 @@
+import getPodcastPlatformLinks from 'podcast-platform-links'
+import PodcastIndexClient from 'podcastdx-client'
 import { cache } from 'react'
 import { parse } from 'rss-to-json'
 
-/**
- * TODO: Add your podcast config here
- */
-export const podcastConfig: PodcastConfig = {
-  /**
-   * Step 1. Add your podcast directories here
-   * We support links from:
-   *   Apple Podcasts, Google Podcasts, Spotify, Stitcher, Overcast,
-   *   Pocket Casts Castro, 小宇宙, 哔哩哔哩, YouTube
-   */
-  directories: [
-    'https://podcasts.apple.com/us/podcast/lex-fridman-podcast/id1434243584',
-    'https://open.spotify.com/show/2MAi0BvDc6GTFvKFPXnkCL',
-    'https://www.youtube.com/lexfridman',
-  ],
-  /**
-   * Step 2. Add your podcast hosts here
-   */
-  hosts: [
-    {
-      name: 'Lex Fridman',
-      link: 'https://lexfridman.com/',
-    },
-  ],
-}
+const client = new PodcastIndexClient({
+  key: process.env.PODCAST_INDEX_API_KEY,
+  secret: process.env.PODCAST_INDEX_API_SECRET,
+  disableAnalytics: true,
+})
+
+export const getPodcastConfig = cache(async (itunesId: number) => {
+  const podcast = await client.podcastByItunesId(itunesId)
+  const platforms = await getPodcastPlatformLinks(itunesId, podcast.feed.url)
+  return {
+    platforms: [
+      ...platforms.map((platform) => ({
+        name: platform.platform,
+        link: platform.link,
+      })),
+      {
+        name: 'RSS',
+        link: podcast.feed.url,
+      },
+    ],
+    hosts: [
+      {
+        name: podcast.feed.author,
+        link: podcast.feed.link,
+      },
+    ],
+    rssUrl: podcast.feed.url,
+    itunesId: podcast.feed.itunesId
+  } as PodcastConfig
+})
 
 /**
  * Get podcast via RSS feed.
  */
-export const getPodcast = cache(async () => {
-  const feed = await parse(process.env.NEXT_PUBLIC_PODCAST_RSS || '')
+export const getPodcast = cache(async (rssUrl: string) => {
+  const feed = await parse(rssUrl)
   const podcast: Podcast = {
     title: feed.title,
     description: feed.description,
@@ -65,8 +72,8 @@ function encodeEpisodeId(raw: string): string {
 /**
  * Get podcast episodes via RSS feed.
  */
-export const getPodcastEpisodes = cache(async () => {
-  const feed = await parse(process.env.NEXT_PUBLIC_PODCAST_RSS || '')
+export const getPodcastEpisodes = cache(async (rssUrl: string) => {
+  const feed = await parse(rssUrl)
   const episodes: Episode[] = feed.items.map((item) => ({
     id: encodeEpisodeId(item.id ?? item.link),
     title: item.title,
@@ -85,8 +92,8 @@ export const getPodcastEpisodes = cache(async () => {
 /**
  * Get podcast episode by id.
  */
-export const getPodcastEpisode = cache(async (id: string) => {
-  const episodes = await getPodcastEpisodes()
+export const getPodcastEpisode = cache(async (id: string, rssUrl: string) => {
+  const episodes = await getPodcastEpisodes(rssUrl)
   const decodedId = decodeURIComponent(id)
   return episodes.find(
     (episode) => episode.id === decodedId || episode.link.endsWith(decodedId)

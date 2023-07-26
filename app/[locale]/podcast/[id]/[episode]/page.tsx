@@ -2,16 +2,17 @@ import { compile } from 'html-to-text'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
-import { EpisodePage } from '~/app/[locale]/[episode]/EpisodePage'
+import { EpisodePage } from '~/app/[locale]/podcast/[id]/[episode]/EpisodePage'
 import { getOpenGraphImage } from '~/app/getOpenGraphImage'
-import { getPodcastEpisode } from '~/podcast.config'
+import { getPodcastConfig, getPodcastEpisode } from '~/podcast.config'
 
 export async function generateMetadata({
   params,
 }: {
-  params: { episode: string; locale: string }
+  params: { episode: string; locale: string, id: number }
 }) {
-  const data = await getPodcastEpisode(params.episode)
+  const { rssUrl } = await getPodcastConfig(params.id)
+  const data = await getPodcastEpisode(params.episode, rssUrl)
   if (!data) {
     return {}
   }
@@ -30,24 +31,25 @@ export async function generateMetadata({
     },
     icons: data.coverArt
       ? {
-          icon: data.coverArt,
-          apple: data.coverArt,
-        }
+        icon: data.coverArt,
+        apple: data.coverArt,
+      }
       : undefined,
   } satisfies Metadata
 }
 
 export default async function ServerEpisodePage({
-  params: { episode },
+  params: { episode, id },
 }: {
-  params: { episode: string }
+  params: { episode: string, id: number }
 }) {
-  const data = await getPodcastEpisode(episode)
+  const { rssUrl } = await getPodcastConfig(id)
+  const data = await getPodcastEpisode(episode, rssUrl)
   if (!data) {
     notFound()
   }
 
-  return <EpisodePage episode={data} />
+  return <EpisodePage episode={data} id={id} />
 }
 
 export const revalidate = 10

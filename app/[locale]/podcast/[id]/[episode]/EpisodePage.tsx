@@ -11,11 +11,11 @@ import remarkGfm from 'remark-gfm'
 import { useAudioPlayer } from '~/app/(audio)/AudioProvider'
 import { PlayButton } from '~/app/(audio)/PlayButton'
 import { Container } from '~/app/[locale]/Container'
-import { FormattedDate } from '~/app/[locale]/FormattedDate'
+import { FormattedDate } from '~/app/[locale]/podcast/[id]/FormattedDate'
 
 const compiler = compile()
 
-export function EpisodePage({ episode }: { episode: Episode }) {
+export function EpisodePage({ episode, id }: { episode: Episode, id: number }) {
   const date = new Date(episode.published)
 
   const audioPlayerData = useMemo(
@@ -25,9 +25,9 @@ export function EpisodePage({ episode }: { episode: Episode }) {
         src: episode.enclosure.url,
         type: episode.enclosure.type,
       },
-      link: `/${episode.id}`,
+      link: `/podcast/${id}/${episode.id}`,
     }),
-    [episode]
+    [episode, id]
   )
   const player = useAudioPlayer(episode.enclosure ? audioPlayerData : undefined)
   const t = useTranslations('EpisodePage')
@@ -37,7 +37,7 @@ export function EpisodePage({ episode }: { episode: Episode }) {
       <Container>
         <header className="relative flex flex-col">
           <Link
-            href="/"
+            href={`/podcast/${id}`}
             className="absolute -top-10 left-0 flex w-full items-center text-sm text-stone-400 hover:text-stone-500 dark:text-neutral-500 dark:hover:text-neutral-400"
           >
             <ChevronLeftIcon className="mr-1 h-4 w-4" />

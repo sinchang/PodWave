@@ -10,7 +10,7 @@ import { useMemo } from 'react'
 
 import { useAudioPlayer } from '~/app/(audio)/AudioProvider'
 import { Container } from '~/app/[locale]/Container'
-import { FormattedDate } from '~/app/[locale]/FormattedDate'
+import { FormattedDate } from '~/app/[locale]/podcast/[id]/FormattedDate'
 
 const compiler = compile()
 
@@ -25,7 +25,7 @@ function PlayPauseIcon({
   )
 }
 
-function EpisodeRow({ episode }: { episode: Episode }) {
+function EpisodeRow({ episode, id }: { episode: Episode, id: number }) {
   const date = new Date(episode.published)
 
   const audioPlayerData = useMemo(
@@ -35,9 +35,9 @@ function EpisodeRow({ episode }: { episode: Episode }) {
         src: episode.enclosure.url,
         type: episode.enclosure.type,
       },
-      link: `/${episode.id}`,
+      link: `/podcast/${id}/${episode.id}`,
     }),
-    [episode]
+    [episode, id]
   )
   const player = useAudioPlayer(audioPlayerData)
   const t = useTranslations('IndexPage')
@@ -54,7 +54,7 @@ function EpisodeRow({ episode }: { episode: Episode }) {
               id={`episode-${episode.id}`}
               className="mt-2 text-lg font-bold text-stone-900 dark:text-neutral-100"
             >
-              <Link href={`/${episode.id}`}>{episode.title}</Link>
+              <Link href={`/podcast/${id}/${episode.id}`}>{episode.title}</Link>
             </h2>
             <FormattedDate
               date={date}
@@ -88,7 +88,7 @@ function EpisodeRow({ episode }: { episode: Episode }) {
                 /
               </span>
               <Link
-                href={`/${episode.id}`}
+                href={`/podcast/${id}/${episode.id}`}
                 className="flex items-center text-sm font-bold leading-6 text-blue-500 hover:text-blue-700 active:text-blue-900 dark:text-blue-400 dark:hover:text-blue-200 dark:active:text-blue-100"
                 aria-label={t('show_notes_aria_label', {
                   episode: episode.title,
@@ -100,7 +100,7 @@ function EpisodeRow({ episode }: { episode: Episode }) {
           </div>
           {episode.coverArt && (
             <Link
-              href={`/${episode.id}`}
+              href={`/podcast/${id}/${episode.id}`}
               className="relative ml-2 block shrink-0 lg:ml-4"
             >
               <Image
@@ -119,7 +119,7 @@ function EpisodeRow({ episode }: { episode: Episode }) {
   )
 }
 
-export function Episodes({ episodes }: { episodes: Episode[] }) {
+export function Episodes({ episodes, id }: { episodes: Episode[], id: number }) {
   const t = useTranslations('IndexPage')
 
   return (
@@ -131,7 +131,7 @@ export function Episodes({ episodes }: { episodes: Episode[] }) {
       </Container>
       <div className="divide-y divide-stone-100 dark:divide-neutral-800 sm:mt-4 lg:mt-8 lg:border-t lg:border-stone-100 dark:lg:border-neutral-800">
         {episodes.map((episode) => (
-          <EpisodeRow key={episode.id} episode={episode} />
+          <EpisodeRow key={episode.id} episode={episode} id={id} />
         ))}
       </div>
     </div>

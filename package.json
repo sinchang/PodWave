@@ -24,6 +24,8 @@
     "next-intl": "^2.18.0",
     "next-themes": "^0.2.1",
     "podcast": "^2.0.1",
+    "podcast-platform-links": "^5.0.0",
+    "podcastdx-client": "^5.0.0",
     "postcss": "8.4.26",
     "postcss-focus-visible": "^9.0.0",
     "react": "18.2.0",
@@ -41,6 +43,7 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.9",
     "@types/html-to-text": "^9.0.1",
+    "encoding": "^0.1.13",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "prettier": "^3.0.0",
     "prettier-plugin-packagejson": "^2.4.5",

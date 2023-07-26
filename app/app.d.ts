@@ -1,12 +1,19 @@
-type RootParams = { locale: 'en' | 'zh-CN' }
+type RootParams = { locale: 'en' | 'zh-CN'; id: number }
 
 // Use type safe message keys with `next-intl`
 type Messages = typeof import('~/messages/en.json')
 declare interface IntlMessages extends Messages {}
 
+type Platform = {
+  name: string
+  link: string
+}
+
 type PodcastConfig = {
-  directories: string[]
+  platforms: Platform[]
   hosts: Host[]
+  rssUrl: string
+  itunesId: number
 }
 
 type Podcast = {
