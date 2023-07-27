@@ -158,7 +158,7 @@ export function AudioProvider({ children, artist }: AudioProviderProps) {
   useEffect(() => {
     if ('mediaSession' in navigator && state.meta) {
       navigator.mediaSession.metadata = new MediaMetadata({
-        artwork: [{ src: state.meta?.audio.coverArt ?? '' }],
+        artwork: [{ src: 'https://dummyimage.com/256x256' }],
         title: state.meta.title,
         artist,
       })
