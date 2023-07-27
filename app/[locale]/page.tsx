@@ -46,7 +46,7 @@ export default function IndexPage() {
           onChange={handleChange}
           id="default-search"
           name="search"
-          className="block w-full rounded-lg bg-transparent p-4 pl-10  text-center text-sm text-gray-900 outline-none dark:text-white dark:placeholder-gray-400"
+          className="block w-full rounded-lg bg-transparent p-4 pl-10  text-center text-base text-gray-900 outline-none dark:text-white dark:placeholder-gray-400"
           placeholder="Search Podcast..."
           required
           autoComplete="off"
