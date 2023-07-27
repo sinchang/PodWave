@@ -163,8 +163,8 @@ export function AudioProvider({ children, artist }: AudioProviderProps) {
       image.src = state.meta.audio.coverArt
       image.addEventListener('load', async () => {
         const canvas = document.createElement('canvas')
-        canvas.width = 128
-        canvas.height = 128
+        canvas.width = 512
+        canvas.height = 512
         const context = canvas.getContext('2d')!
         context.drawImage(image, 0, 0, canvas.width, canvas.height)
         canvas.toBlob((blob) => {
