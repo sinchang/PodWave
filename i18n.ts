@@ -1,6 +1,9 @@
 const supportedLanguages = [
   { id: 'en', locale: 'en', title: 'English', isDefault: true },
   { id: 'zh_CN', locale: 'zh-CN', title: '简体中文' },
+  { id: 'zh_TW', locale: 'zh-TW', title: '繁體中文' },
+  { id: 'ja_JP', locale: 'ja-JP', title: '日本語' },
+  { id: 'ko', locale: 'ko', title: '日本語' },
 ]
 
 const baseLanguage = supportedLanguages.find((l) => l.isDefault)!

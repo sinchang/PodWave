@@ -1,0 +1,35 @@
+{
+  "Languages": {
+    "placeholder": "選擇語言",
+    "en": "英文",
+    "zh-CN": "简体中文",
+    "zh-TW": "繁體中文",
+    "ja-JP": "日本語"
+  },
+  "Layout": {
+    "about": "關於",
+    "show_more": "顯示更多",
+    "listen": "聆聽",
+    "homepage": "主頁",
+    "hosted_by": "主辦單位"
+  },
+  "IndexPage": {
+    "episodes": "集數",
+    "listen": "聆聽",
+    "show_notes": "節目註解",
+    "show_notes_aria_label": "第 {episode} 集註解",
+    "play_episode": "播放第 {episode} 集",
+    "pause_episode": "暫停第 {episode} 集"
+  },
+  "EpisodePage": { "other_episodes": "其他集數" },
+  "AudioPlayer": {
+    "current_time": "目前時間",
+    "play": "播放",
+    "pause": "暫停",
+    "rewind": "倒退 {s, plural, =1 {1 秒鐘} other {# 秒鐘}}",
+    "fast_forward": "快進 {s, plural, =1 {1 秒鐘} other {# 秒鐘}}",
+    "mute": "靜音",
+    "unmute": "取消靜音",
+    "playback_rate": "播放速度"
+  }
+}

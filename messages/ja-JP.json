@@ -1,0 +1,35 @@
+{
+  "Languages": {
+    "placeholder": "言語を選択",
+    "en": "英文",
+    "zh-CN": "简体中文",
+    "zh-TW": "繁體中文",
+    "ja-JP": "日本語"
+  },
+  "Layout": {
+    "about": "について",
+    "show_more": "もっと表示",
+    "listen": "再生",
+    "homepage": "ホームページ",
+    "hosted_by": "ホスト"
+  },
+  "IndexPage": {
+    "episodes": "エピソード",
+    "listen": "再生",
+    "show_notes": "詳細を表示",
+    "show_notes_aria_label": "エピソード {episode} の詳細",
+    "play_episode": "エピソード {episode} を再生",
+    "pause_episode": "エピソード {episode} を一時停止"
+  },
+  "EpisodePage": { "other_episodes": "その他のエピソード" },
+  "AudioPlayer": {
+    "current_time": "現在の時間",
+    "play": "再生",
+    "pause": "一時停止",
+    "rewind": "{s, plural, =1 {1 秒} other {# 秒}} 巻き戻す",
+    "fast_forward": "{s, plural, =1 {1 秒} other {# 秒}} 早送り",
+    "mute": "ミュート",
+    "unmute": "ミュート解除",
+    "playback_rate": "再生速度"
+  }
+}
