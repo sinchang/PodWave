@@ -1,6 +1,5 @@
 'use client'
 
-import type { ComponentProps } from '@zolplay/react'
 import { clsxm } from '@zolplay/utils'
 import { useTranslations } from 'next-intl'
 

@@ -1,4 +1,4 @@
-type RootParams = { locale: 'en' | 'zh-CN'; id: number }
+type RootParams = { locale: 'en' | 'zh-CN' }
 
 // Use type safe message keys with `next-intl`
 type Messages = typeof import('~/messages/en.json')
@@ -44,3 +44,9 @@ type Host = {
   name: string
   link: string
 }
+
+type ComponentProps<P = {}> = PropsWithChildren<
+  {
+    className?: string
+  } & P
+>

@@ -1,6 +1,5 @@
 'use client'
 
-import { ComponentProps } from '@zolplay/react'
 import { useLocale } from 'next-intl'
 import { useMemo } from 'react'
 

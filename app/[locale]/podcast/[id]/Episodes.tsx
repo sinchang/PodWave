@@ -1,6 +1,5 @@
 'use client'
 
-import { ComponentProps } from '@zolplay/react'
 import { compile } from 'html-to-text'
 import { PauseIcon, PlayIcon } from 'lucide-react'
 import Image from 'next/image'

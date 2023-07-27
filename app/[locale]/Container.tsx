@@ -1,4 +1,3 @@
-import type { ComponentProps } from '@zolplay/react'
 import { clsxm } from '@zolplay/utils'
 
 export function Container({ className, children, ...props }: ComponentProps) {

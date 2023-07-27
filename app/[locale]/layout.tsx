@@ -1,6 +1,7 @@
 import '~/app/globals.css'
 import 'focus-visible'
 
+import { Metadata } from 'next'
 import { Manrope } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import { NextIntlClientProvider } from 'next-intl'
@@ -19,6 +20,30 @@ const sansFontEn = Manrope({
 
 export function generateStaticParams() {
   return i18n.locales.map((locale) => ({ locale }))
+}
+
+export async function generateMetadata({ params }: { params: RootParams }) {
+  return {
+    themeColor: [
+      { media: '(prefers-color-scheme: dark)', color: '#1c1917' },
+      { media: '(prefers-color-scheme: light)', color: '#fafaf9' },
+    ],
+    openGraph: {
+      locale: params.locale,
+      type: 'website',
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
+  } satisfies Metadata
 }
 
 export default async function RootLayout({
