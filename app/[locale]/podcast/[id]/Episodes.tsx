@@ -27,13 +27,13 @@ function PlayPauseIcon({
 function EpisodeRow({ episode, id }: { episode: Episode; id: number }) {
   const date = new Date(episode.published)
 
-  const audioPlayerData: AudioData= useMemo(
+  const audioPlayerData: AudioData = useMemo(
     () => ({
       title: episode.title,
       audio: {
         src: episode.enclosure?.url,
         type: episode.enclosure?.type,
-        coverArt: episode.coverArt
+        coverArt: episode.coverArt,
       },
       link: `/podcast/${id}/${episode.id}`,
     }),

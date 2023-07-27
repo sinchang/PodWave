@@ -55,7 +55,7 @@ export default async function RootLayout({
   const config = await getPodcastConfig(id)
 
   return (
-    <AudioProvider>
+    <AudioProvider artist={config.info.title}>
       <PodcastLayout podcastConfig={config}>{children}</PodcastLayout>
     </AudioProvider>
   )

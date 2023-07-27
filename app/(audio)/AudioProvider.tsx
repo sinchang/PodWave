@@ -71,9 +71,10 @@ function audioReducer(state: Player, action: ActionType): Player {
 
 interface AudioProviderProps {
   children: ReactNode
+  artist: string
 }
 
-export function AudioProvider({ children }: AudioProviderProps) {
+export function AudioProvider({ children, artist }: AudioProviderProps) {
   const [lastPlayTimeFlag, setlastPlayTimeFlag] = useLocalStorageState<
     string | undefined
   >(LAST_PLAY_TIME_FLAG)
@@ -155,14 +156,14 @@ export function AudioProvider({ children }: AudioProviderProps) {
   }, [state.meta?.link])
 
   useEffect(() => {
-    if ("mediaSession" in navigator && state.meta) {
-      console.log(state.meta)
+    if ('mediaSession' in navigator && state.meta) {
       navigator.mediaSession.metadata = new MediaMetadata({
-        artwork: [{ src: state.meta?.audio.coverArt ?? 'https://dummyimage.com/256x256', type: 'image/png' }],
+        artwork: [{ src: state.meta?.audio.coverArt ?? '' }],
         title: state.meta.title,
-      });
+        artist,
+      })
     }
-  }, [state.meta])
+  }, [state.meta, artist])
 
   const api = useMemo(() => ({ ...state, ...actions }), [state, actions])
 
