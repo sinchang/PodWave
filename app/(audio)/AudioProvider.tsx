@@ -155,12 +155,14 @@ export function AudioProvider({ children }: AudioProviderProps) {
   }, [state.meta?.link])
 
   useEffect(() => {
-    if ("mediaSession" in navigator && state.meta?.audio.coverArt) {
+    if ("mediaSession" in navigator && state.meta) {
+      console.log(state.meta)
       navigator.mediaSession.metadata = new MediaMetadata({
-        artwork: [{ src: state.meta?.audio.coverArt }],
+        artwork: [{ src: state.meta?.audio.coverArt ?? '' }],
+        title: state.meta.title,
       });
     }
-  }, [state.meta?.audio.coverArt])
+  }, [state.meta])
 
   const api = useMemo(() => ({ ...state, ...actions }), [state, actions])
 
