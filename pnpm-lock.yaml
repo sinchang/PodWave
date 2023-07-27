@@ -1,6 +1,12 @@
 lockfileVersion: '6.0'
 
 dependencies:
+  '@react-aria/listbox':
+    specifier: ^3.10.0
+    version: 3.10.0(react@18.2.0)
+  '@react-aria/overlays':
+    specifier: ^3.15.0
+    version: 3.15.0(react-dom@18.2.0)(react@18.2.0)
   '@types/node':
     specifier: 20.4.2
     version: 20.4.2
@@ -87,6 +93,12 @@ dependencies:
     version: 3.21.4
 
 devDependencies:
+  '@react-types/select':
+    specifier: ^3.8.1
+    version: 3.8.1(react@18.2.0)
+  '@react-types/shared':
+    specifier: ^3.18.1
+    version: 3.18.1(react@18.2.0)
   '@tailwindcss/typography':
     specifier: ^0.5.9
     version: 0.5.9(tailwindcss@3.3.3)
@@ -3699,7 +3711,6 @@ packages:
     dependencies:
       '@react-types/shared': 3.18.1(react@18.2.0)
       react: 18.2.0
-    dev: false
 
   /@react-types/shared@3.18.1(react@18.2.0):
     resolution:
@@ -3710,7 +3721,6 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       react: 18.2.0
-    dev: false
 
   /@react-types/slider@3.5.1(react@18.2.0):
     resolution:
@@ -6404,11 +6414,7 @@ packages:
     dev: false
 
   /js-tokens@4.0.0:
-    resolution:
-      {
-        integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==,
-      }
-    dev: false
+    resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
 
   /js-yaml@4.1.0:
     resolution:
@@ -6615,7 +6621,6 @@ packages:
     hasBin: true
     dependencies:
       js-tokens: 4.0.0
-    dev: false
 
   /lru-cache@5.1.1:
     resolution:
@@ -8129,7 +8134,6 @@ packages:
     engines: { node: '>=0.10.0' }
     dependencies:
       loose-envify: 1.4.0
-    dev: false
 
   /read-cache@1.0.0:
     resolution:
