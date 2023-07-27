@@ -158,7 +158,7 @@ export function AudioProvider({ children }: AudioProviderProps) {
     if ("mediaSession" in navigator && state.meta) {
       console.log(state.meta)
       navigator.mediaSession.metadata = new MediaMetadata({
-        artwork: [{ src: state.meta?.audio.coverArt ?? '' }],
+        artwork: [{ src: state.meta?.audio.coverArt ?? 'https://dummyimage.com/256x256', type: 'image/png' }],
         title: state.meta.title,
       });
     }
