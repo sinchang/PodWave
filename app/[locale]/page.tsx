@@ -53,7 +53,7 @@ export default function IndexPage() {
         />
       </div>
       {results.length ? (
-        <ul className="py-1 shadow-lg">
+        <ul className="py-1 shadow-lg max-h-[30vh] overflow-auto">
           {results.map((item: any) =>
             item.itunesId ? (
               <li key={item.id} className="m-4">
