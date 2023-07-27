@@ -13,13 +13,14 @@ type DirectoryInfo = {
 
 export function PodcastDirectoryLink({
   className,
-  platform
+  platform,
 }: {
   className?: string
   platform: PodcastConfig['platforms'][0]
 }) {
-
-  const svg = `https://cdn.jsdelivr.net/gh/nathangathright/podcast-badges/icons/${platform.name.toLowerCase().replace(/\s/g, '')}.svg`
+  const svg = `https://cdn.jsdelivr.net/gh/nathangathright/podcast-badges/icons/${platform.name
+    .toLowerCase()
+    .replace(/\s/g, '')}.svg`
   return (
     <Link
       href={platform.link}
@@ -31,7 +32,17 @@ export function PodcastDirectoryLink({
       title={platform.name}
       target="_blank"
     >
-      {platform.name === 'RSS' ? <RSSIcon /> : <Image aria-hidden alt={platform.name} width={24} height={24} src={svg} />}
+      {platform.name === 'RSS' ? (
+        <RSSIcon />
+      ) : (
+        <Image
+          aria-hidden
+          alt={platform.name}
+          width={24}
+          height={24}
+          src={svg}
+        />
+      )}
     </Link>
   )
 }

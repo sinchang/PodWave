@@ -3,6 +3,7 @@
 > Discover, listen, and engage with the most captivating podcasts from diverse genres in one place.
 
 It is built with:
+
 - [Next.js](https://nextjs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 
@@ -17,6 +18,7 @@ NEXT_PUBLIC_OG_URL=http://localhost:3000
 ```
 
 ## Running Locally
+
 ```bash
 pnpm install
 pnpm dev

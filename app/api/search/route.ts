@@ -1,4 +1,4 @@
-import {  NextRequest, NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import PodcastIndexClient from 'podcastdx-client'
 
 // export const runtime = 'edge'
@@ -11,6 +11,6 @@ const client = new PodcastIndexClient({
 
 export async function GET(req: NextRequest) {
   const q = new URL(req.url).searchParams.get('q') ?? ''
-  const r = await client.search(q,{max: 10})
-  return  NextResponse.json(r)
+  const r = await client.search(q, { max: 10 })
+  return NextResponse.json(r)
 }

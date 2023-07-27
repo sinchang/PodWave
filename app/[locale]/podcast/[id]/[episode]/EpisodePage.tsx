@@ -15,7 +15,7 @@ import { FormattedDate } from '~/app/[locale]/podcast/[id]/FormattedDate'
 
 const compiler = compile()
 
-export function EpisodePage({ episode, id }: { episode: Episode, id: number }) {
+export function EpisodePage({ episode, id }: { episode: Episode; id: number }) {
   const date = new Date(episode.published)
 
   const audioPlayerData = useMemo(
