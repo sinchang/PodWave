@@ -1,9 +1,11 @@
 'use client'
 
+import { useLocalStorageState } from 'ahooks'
 import {
   createContext,
   ReactNode,
   useContext,
+  useEffect,
   useMemo,
   useReducer,
   useRef,
@@ -47,6 +49,8 @@ type ActionType =
 
 const AudioPlayerContext = createContext<Player | undefined>(undefined)
 
+const LAST_PLAY_TIME_FLAG = 'last_play_time_flag'
+
 function audioReducer(state: Player, action: ActionType): Player {
   switch (action.type) {
     case 'SET_META':
@@ -69,6 +73,9 @@ interface AudioProviderProps {
 }
 
 export function AudioProvider({ children }: AudioProviderProps) {
+  const [lastPlayTimeFlag, setlastPlayTimeFlag] = useLocalStorageState<
+    string | undefined
+  >(LAST_PLAY_TIME_FLAG)
   const [state, dispatch] = useReducer(audioReducer, {
     playing: false,
     muted: false,
@@ -128,6 +135,22 @@ export function AudioProvider({ children }: AudioProviderProps) {
       },
     }
   }, [state.playing])
+
+  useEffect(() => {
+    if (state.currentTime > 0 && state.meta?.link) {
+      setlastPlayTimeFlag(`${state.meta.link}@${String(state.currentTime)}`)
+    }
+  }, [setlastPlayTimeFlag, state.currentTime, state.meta?.link])
+
+  useEffect(() => {
+    if (lastPlayTimeFlag) {
+      const time = Number(lastPlayTimeFlag.split('@')[1])
+      const link = lastPlayTimeFlag.split('@')[0]
+      if (state.meta?.link === link) {
+        actions.seek(time)
+      }
+    }
+  }, [state.meta?.link])
 
   const api = useMemo(() => ({ ...state, ...actions }), [state, actions])
 
