@@ -11,7 +11,7 @@ const client = new PodcastIndexClient({
 
 export const getPodcastConfig = cache(async (itunesId: number) => {
   const podcast = await client.podcastByItunesId(itunesId)
-  const platforms = await getPodcastPlatformLinks(itunesId, podcast.feed.url)
+  const platforms = getPodcastPlatformLinks(itunesId, podcast.feed.url)
   return {
     platforms: [
       ...platforms.map((platform) => ({

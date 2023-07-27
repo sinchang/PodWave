@@ -47,8 +47,8 @@ dependencies:
     specifier: ^2.0.1
     version: 2.0.1
   podcast-platform-links:
-    specifier: ^5.0.0
-    version: 5.0.0
+    specifier: ^5.1.0
+    version: 5.1.0
   podcastdx-client:
     specifier: ^5.0.0
     version: 5.0.0(encoding@0.1.13)
@@ -6549,8 +6549,8 @@ packages:
     resolution: {integrity: sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==}
     engines: {node: '>= 6'}
 
-  /podcast-platform-links@5.0.0:
-    resolution: {integrity: sha512-NETBpG0r81QAP/Bn/+1h9jH692VV1UhyJZmUaNn0N6l8lipuCyWEHa+UOZ5I6O0QgMSrlimmmjAuejz0KH8Rug==}
+  /podcast-platform-links@5.1.0:
+    resolution: {integrity: sha512-cwZuzDYfLk6csR4obBbAAArgt0ZckS74McK79PgTUT79B1vgFgb9G1Dd/J6Dqom0yGX4KXLKm5AKOZXGAR+K2Q==}
     dev: false
 
   /podcast@2.0.1:
