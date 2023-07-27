@@ -11,7 +11,11 @@ export function generateStaticParams() {
   return i18n.locales.map((locale) => ({ locale }))
 }
 
-export async function generateMetadata({ params }: { params: RootParams & { id: number } }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: RootParams & { id: number }
+}) {
   const { id } = params
   const { info } = await getPodcastConfig(id)
   const compiler = compile()
@@ -48,13 +52,11 @@ export default async function RootLayout({
   children: React.ReactNode
   params: RootParams & { id: number }
 }) {
-
   const config = await getPodcastConfig(id)
 
   return (
     <AudioProvider>
       <PodcastLayout podcastConfig={config}>{children}</PodcastLayout>
     </AudioProvider>
-
   )
 }

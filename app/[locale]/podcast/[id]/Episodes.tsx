@@ -24,7 +24,7 @@ function PlayPauseIcon({
   )
 }
 
-function EpisodeRow({ episode, id }: { episode: Episode, id: number }) {
+function EpisodeRow({ episode, id }: { episode: Episode; id: number }) {
   const date = new Date(episode.published)
 
   const audioPlayerData = useMemo(
@@ -120,7 +120,13 @@ function EpisodeRow({ episode, id }: { episode: Episode, id: number }) {
   )
 }
 
-export function Episodes({ episodes, id }: { episodes: Episode[], id: number }) {
+export function Episodes({
+  episodes,
+  id,
+}: {
+  episodes: Episode[]
+  id: number
+}) {
   const t = useTranslations('IndexPage')
 
   return (

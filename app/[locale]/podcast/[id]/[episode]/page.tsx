@@ -9,7 +9,7 @@ import { getPodcastEpisode } from '~/podcast.config'
 export async function generateMetadata({
   params,
 }: {
-  params: { episode: string; locale: string, id: number }
+  params: { episode: string; locale: string; id: number }
 }) {
   const data = await getPodcastEpisode(params.episode, params.id)
   if (!data) {
@@ -30,9 +30,9 @@ export async function generateMetadata({
     },
     icons: data.coverArt
       ? {
-        icon: data.coverArt,
-        apple: data.coverArt,
-      }
+          icon: data.coverArt,
+          apple: data.coverArt,
+        }
       : undefined,
   } satisfies Metadata
 }
@@ -40,7 +40,7 @@ export async function generateMetadata({
 export default async function ServerEpisodePage({
   params: { episode, id },
 }: {
-  params: { episode: string, id: number }
+  params: { episode: string; id: number }
 }) {
   const data = await getPodcastEpisode(episode, id)
   if (!data) {
