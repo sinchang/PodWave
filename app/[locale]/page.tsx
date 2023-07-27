@@ -22,8 +22,8 @@ export default function IndexPage() {
     const searchPod = async () => {
       let results = []
       setIsSearching(true)
-      if (debouncedSearchTerm && searchTerm) {
-        const data = await fetch(`/api/search?q=${searchTerm}`).then((res) =>
+      if (debouncedSearchTerm) {
+        const data = await fetch(`/api/search?q=${debouncedSearchTerm}`).then((res) =>
           res.json()
         )
         results = data?.feeds || []
@@ -34,7 +34,7 @@ export default function IndexPage() {
     }
 
     searchPod()
-  }, [debouncedSearchTerm, searchTerm])
+  }, [debouncedSearchTerm])
   return (
     <Container className="mt-[20vh]">
       <h1 className="m-8 text-center text-4xl font-bold text-gray-900 dark:text-white">
@@ -53,7 +53,7 @@ export default function IndexPage() {
         />
       </div>
       {results.length ? (
-        <ul className="py-1 shadow-lg max-h-[30vh] overflow-auto">
+        <ul className="py-1 shadow-lg max-h-[40vh] overflow-auto">
           {results.map((item: any) =>
             item.itunesId ? (
               <li key={item.id} className="m-4">
@@ -75,7 +75,7 @@ export default function IndexPage() {
         </ul>
       ) : (
         <>
-          {searchTerm ? (
+          {searchTerm && !isSearching ? (
             <div className="p-4 text-center shadow-lg">No results found.</div>
           ) : null}
         </>
