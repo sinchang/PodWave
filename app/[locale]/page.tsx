@@ -23,8 +23,8 @@ export default function IndexPage() {
       let results = []
       setIsSearching(true)
       if (debouncedSearchTerm) {
-        const data = await fetch(`/api/search?q=${debouncedSearchTerm}`).then((res) =>
-          res.json()
+        const data = await fetch(`/api/search?q=${debouncedSearchTerm}`).then(
+          (res) => res.json()
         )
         results = data?.feeds || []
       }
@@ -53,7 +53,7 @@ export default function IndexPage() {
         />
       </div>
       {results.length ? (
-        <ul className="py-1 shadow-lg max-h-[40vh] overflow-auto">
+        <ul className="max-h-[40vh] overflow-auto py-1 shadow-lg">
           {results.map((item: any) =>
             item.itunesId ? (
               <li key={item.id} className="m-4">

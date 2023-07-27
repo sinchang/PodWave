@@ -150,6 +150,7 @@ export function AudioProvider({ children }: AudioProviderProps) {
         actions.seek(time)
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.meta?.link])
 
   const api = useMemo(() => ({ ...state, ...actions }), [state, actions])
