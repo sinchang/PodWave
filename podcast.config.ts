@@ -60,10 +60,10 @@ function encodeEpisodeId(raw: string): string {
 }
 
 /**
- * Get podcast episodes via RSS feed.
+ * Get podcast episodes via iTunes ID.
  */
 export const getPodcastEpisodes = cache(async (itunesId: number) => {
-  const { items } = await client.episodesByItunesId(itunesId)
+  const { items } = await client.episodesByItunesId(itunesId, { max: 1000 })
   const episodes: Episode[] = items.map((item) => ({
     id: encodeEpisodeId(item.id ? String(item.id) : item.link),
     title: item.title,
@@ -86,10 +86,12 @@ export const getPodcastEpisodes = cache(async (itunesId: number) => {
 /**
  * Get podcast episode by id.
  */
-export const getPodcastEpisode = cache(async (episodeId: string, itunesId: number) => {
-  const episodes = await getPodcastEpisodes(itunesId)
-  const decodedId = decodeURIComponent(episodeId)
-  return episodes.find(
-    (episode) => episode.id === decodedId || episode.link.endsWith(decodedId)
-  )
-})
+export const getPodcastEpisode = cache(
+  async (episodeId: string, itunesId: number) => {
+    const episodes = await getPodcastEpisodes(itunesId)
+    const decodedId = decodeURIComponent(episodeId)
+    return episodes.find(
+      (episode) => episode.id === decodedId || episode.link.endsWith(decodedId)
+    )
+  }
+)
