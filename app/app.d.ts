@@ -12,8 +12,7 @@ type Platform = {
 type PodcastConfig = {
   platforms: Platform[]
   hosts: Host[]
-  rssUrl: string
-  itunesId: number
+  info: Podcast
 }
 
 type Podcast = {
@@ -21,6 +20,8 @@ type Podcast = {
   description: string
   link: string
   coverArt: string
+  rssUrl: string
+  itunesId: number
 }
 
 type Episode = {
@@ -30,12 +31,12 @@ type Episode = {
   link: string
   published: number
   content: string
-  duration: string
+  duration: number
   coverArt?: string
   enclosure: {
     url: string
     type: string
-    length: string
+    length: number
   }
 }
 

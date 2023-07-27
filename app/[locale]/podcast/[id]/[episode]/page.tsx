@@ -4,15 +4,14 @@ import { notFound } from 'next/navigation'
 
 import { EpisodePage } from '~/app/[locale]/podcast/[id]/[episode]/EpisodePage'
 import { getOpenGraphImage } from '~/app/getOpenGraphImage'
-import { getPodcastConfig, getPodcastEpisode } from '~/podcast.config'
+import { getPodcastEpisode } from '~/podcast.config'
 
 export async function generateMetadata({
   params,
 }: {
   params: { episode: string; locale: string, id: number }
 }) {
-  const { rssUrl } = await getPodcastConfig(params.id)
-  const data = await getPodcastEpisode(params.episode, rssUrl)
+  const data = await getPodcastEpisode(params.episode, params.id)
   if (!data) {
     return {}
   }
@@ -43,8 +42,7 @@ export default async function ServerEpisodePage({
 }: {
   params: { episode: string, id: number }
 }) {
-  const { rssUrl } = await getPodcastConfig(id)
-  const data = await getPodcastEpisode(episode, rssUrl)
+  const data = await getPodcastEpisode(episode, id)
   if (!data) {
     notFound()
   }

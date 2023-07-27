@@ -1,10 +1,9 @@
 import { Episodes } from '~/app/[locale]/podcast/[id]/Episodes'
-import { getPodcastConfig, getPodcastEpisodes } from '~/podcast.config'
+import { getPodcastEpisodes } from '~/podcast.config'
 
 export default async function IndexPage({ params }: { params: { id: number } }) {
   const { id } = params
-  const { rssUrl } = await getPodcastConfig(id)
-  const episodes = await getPodcastEpisodes(rssUrl)
+  const episodes = await getPodcastEpisodes(id)
 
   return <Episodes episodes={episodes} id={id} />
 }

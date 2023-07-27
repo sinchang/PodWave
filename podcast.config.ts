@@ -1,7 +1,6 @@
 import getPodcastPlatformLinks from 'podcast-platform-links'
 import PodcastIndexClient from 'podcastdx-client'
 import { cache } from 'react'
-import { parse } from 'rss-to-json'
 
 const client = new PodcastIndexClient({
   key: process.env.PODCAST_INDEX_API_KEY,
@@ -10,8 +9,8 @@ const client = new PodcastIndexClient({
 })
 
 export const getPodcastConfig = cache(async (itunesId: number) => {
-  const podcast = await client.podcastByItunesId(itunesId)
-  const platforms = getPodcastPlatformLinks(itunesId, podcast.feed.url)
+  const { feed } = await client.podcastByItunesId(itunesId)
+  const platforms = getPodcastPlatformLinks(itunesId, feed.url)
   return {
     platforms: [
       ...platforms.map((platform) => ({
@@ -20,33 +19,24 @@ export const getPodcastConfig = cache(async (itunesId: number) => {
       })),
       {
         name: 'RSS',
-        link: podcast.feed.url,
+        link: feed.url,
       },
     ],
     hosts: [
       {
-        name: podcast.feed.author,
-        link: podcast.feed.link,
+        name: feed.author,
+        link: feed.link,
       },
     ],
-    rssUrl: podcast.feed.url,
-    itunesId: podcast.feed.itunesId
+    info: {
+      title: feed.title,
+      description: feed.description,
+      link: feed.link,
+      coverArt: feed.image,
+      rssUrl: feed.url,
+      itunesId: feed.itunesId,
+    },
   } as PodcastConfig
-})
-
-/**
- * Get podcast via RSS feed.
- */
-export const getPodcast = cache(async (rssUrl: string) => {
-  const feed = await parse(rssUrl)
-  const podcast: Podcast = {
-    title: feed.title,
-    description: feed.description,
-    link: feed.link,
-    coverArt: feed.image,
-  }
-
-  return podcast
 })
 
 /**
@@ -72,18 +62,22 @@ function encodeEpisodeId(raw: string): string {
 /**
  * Get podcast episodes via RSS feed.
  */
-export const getPodcastEpisodes = cache(async (rssUrl: string) => {
-  const feed = await parse(rssUrl)
-  const episodes: Episode[] = feed.items.map((item) => ({
-    id: encodeEpisodeId(item.id ?? item.link),
+export const getPodcastEpisodes = cache(async (itunesId: number) => {
+  const { items } = await client.episodesByItunesId(itunesId)
+  const episodes: Episode[] = items.map((item) => ({
+    id: encodeEpisodeId(item.id ? String(item.id) : item.link),
     title: item.title,
     description: item.description,
     link: item.link,
-    published: item.published,
-    content: item.content,
-    duration: item.itunes_duration,
-    enclosure: item.enclosures[0],
-    coverArt: item.itunes_image?.href,
+    published: item.datePublished,
+    content: item.description,
+    duration: item.duration,
+    enclosure: {
+      url: item.enclosureUrl,
+      type: item.enclosureType,
+      length: item.enclosureLength,
+    },
+    coverArt: item.image,
   }))
 
   return episodes
@@ -92,9 +86,9 @@ export const getPodcastEpisodes = cache(async (rssUrl: string) => {
 /**
  * Get podcast episode by id.
  */
-export const getPodcastEpisode = cache(async (id: string, rssUrl: string) => {
-  const episodes = await getPodcastEpisodes(rssUrl)
-  const decodedId = decodeURIComponent(id)
+export const getPodcastEpisode = cache(async (episodeId: string, itunesId: number) => {
+  const episodes = await getPodcastEpisodes(itunesId)
+  const decodedId = decodeURIComponent(episodeId)
   return episodes.find(
     (episode) => episode.id === decodedId || episode.link.endsWith(decodedId)
   )

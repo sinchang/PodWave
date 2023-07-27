@@ -139,11 +139,9 @@ function AboutSection(
 }
 
 export function PodcastLayout({
-  podcast,
   children,
   podcastConfig,
 }: {
-  podcast: Podcast
   children: React.ReactNode
   podcastConfig: PodcastConfig
 }) {
@@ -154,13 +152,13 @@ export function PodcastLayout({
       <header className="bg-stone-50 dark:bg-neutral-900 lg:fixed lg:inset-y-0 lg:left-0 lg:flex lg:w-112 lg:items-start lg:overflow-y-auto xl:w-120">
         <div className="relative z-10 mx-auto px-4 pb-4 pt-10 sm:px-6 md:max-w-2xl md:px-4 lg:min-h-full lg:flex-auto lg:border-x lg:border-stone-200 lg:px-8 lg:py-12 dark:lg:border-neutral-800 xl:px-12">
           <Link
-            href={`/podcast/${podcastConfig.itunesId}`}
+            href={`/podcast/${podcastConfig.info.itunesId}`}
             className="relative mx-auto block w-48 overflow-hidden rounded-lg bg-stone-200 shadow-xl shadow-stone-200 dark:bg-neutral-800 dark:shadow-neutral-800 sm:w-64 sm:rounded-xl lg:w-auto lg:rounded-2xl"
             aria-label={t('homepage')}
           >
             <Image
               className="w-full"
-              src={podcast.coverArt}
+              src={podcastConfig.info.coverArt}
               alt=""
               sizes="(min-width: 1024px) 20rem, (min-width: 640px) 16rem, 12rem"
               width={500}
@@ -172,11 +170,11 @@ export function PodcastLayout({
           </Link>
           <div className="mt-10 text-center lg:mt-12 lg:text-left">
             <p className="text-xl font-bold text-stone-900 dark:text-neutral-100">
-              <Link href={`/podcast/${podcastConfig.itunesId}`}>{podcast.title}</Link>
+              <Link href={`/podcast/${podcastConfig.info.itunesId}`}>{podcastConfig.info.title}</Link>
             </p>
           </div>
           <AboutSection className="mt-12 hidden lg:block">
-            {podcast.description}
+            {podcastConfig.info.description}
           </AboutSection>
           <section className="mt-10 lg:mt-12">
             <h2 className="sr-only flex items-center text-sm font-medium leading-7 text-stone-900 dark:text-neutral-100 lg:not-sr-only">
@@ -230,7 +228,7 @@ export function PodcastLayout({
       </main>
       <footer className="border-t border-stone-200 bg-stone-50 py-10 pb-40 dark:border-neutral-800 dark:bg-neutral-900 sm:py-16 sm:pb-32 lg:hidden">
         <div className="mx-auto px-4 sm:px-6 md:max-w-2xl md:px-4">
-          <AboutSection>{podcast.description}</AboutSection>
+          <AboutSection>{podcastConfig.info.description}</AboutSection>
           <h2 className="mt-8 flex items-center text-sm font-medium leading-7 text-stone-900 dark:text-neutral-100">
             <UserIcon className="h-3 w-auto fill-stone-300 text-blue-500 dark:fill-neutral-600 dark:text-blue-400" />
             <span className="ml-2.5">{t('hosted_by')}</span>
