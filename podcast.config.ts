@@ -69,7 +69,7 @@ export const getPodcastEpisodes = cache(async (itunesId: number) => {
     title: item.title,
     description: item.description,
     link: item.link,
-    published: item.datePublished,
+    published: item.datePublished * 1000,
     content: item.description,
     duration: item.duration,
     enclosure: {
