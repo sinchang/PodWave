@@ -11,6 +11,8 @@ import { getMessages } from '~/app/getMessages'
 import { ThemeProvider } from '~/app/ThemeProvider'
 import { i18n } from '~/i18n'
 
+import { ThemeSwitcher } from './ThemeSwitcher'
+
 const sansFontEn = Manrope({
   weight: ['400', '500', '700'],
   display: 'swap',
@@ -136,7 +138,7 @@ export default async function RootLayout({
       suppressHydrationWarning
       className={`font-sans ${sansFontEn.variable}`}
     >
-      <body className="bg-stone-50">
+      <body className="bg-stone-50 dark:bg-neutral-900">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -145,6 +147,9 @@ export default async function RootLayout({
         >
           <NextIntlClientProvider locale={locale} messages={messages}>
             <Waveform className="fixed left-0 top-0 z-10 h-20 w-full opacity-75" />
+            <div className="fixed right-4 top-4 z-10">
+              <ThemeSwitcher />
+            </div>
             {children}
           </NextIntlClientProvider>
         </ThemeProvider>

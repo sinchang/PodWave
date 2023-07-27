@@ -83,7 +83,7 @@ export function PodcastLayout({
 
   return (
     <>
-      <header className="bg-stone-50 dark:bg-neutral-900 lg:fixed lg:inset-y-0 lg:left-0 lg:flex lg:w-112 lg:items-start lg:overflow-y-auto xl:w-120">
+      <header className="lg:fixed lg:inset-y-0 lg:left-0 lg:flex lg:w-112 lg:items-start lg:overflow-y-auto xl:w-120">
         <div className="relative z-10 mx-auto px-4 pb-4 pt-10 sm:px-6 md:max-w-2xl md:px-4 lg:min-h-full lg:flex-auto lg:border-x lg:border-stone-200 lg:px-8 lg:py-12 dark:lg:border-neutral-800 xl:px-12">
           <Link
             href={`/podcast/${podcastConfig.info.itunesId}`}
@@ -195,9 +195,6 @@ export function PodcastLayout({
       </footer>
       <div className="fixed inset-x-0 bottom-0 z-10 lg:left-112 xl:left-120">
         <AudioPlayer />
-      </div>
-      <div className="fixed right-4 top-4 z-10">
-        <ThemeSwitcher />
       </div>
     </>
   )

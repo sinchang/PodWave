@@ -37,7 +37,7 @@ export default function IndexPage() {
   }, [debouncedSearchTerm, searchTerm])
   return (
     <Container className="mt-[20vh]">
-      <h1 className="m-8 text-center text-4xl font-bold text-gray-900">
+      <h1 className="m-8 text-center text-4xl font-bold text-gray-900 dark:text-white">
         Find Your Podcast
       </h1>
       <div className="relative">
