@@ -14,9 +14,10 @@ import {
 interface Audio {
   src: string
   type: string
+  coverArt: string | undefined
 }
 
-interface AudioData {
+export interface AudioData {
   audio: Audio
   title: string
   link: string
@@ -150,8 +151,16 @@ export function AudioProvider({ children }: AudioProviderProps) {
         actions.seek(time)
       }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.meta?.link])
+
+  useEffect(() => {
+    if ("mediaSession" in navigator && state.meta?.audio.coverArt) {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        artwork: [{ src: state.meta?.audio.coverArt }],
+      });
+    }
+  }, [state.meta?.audio.coverArt])
 
   const api = useMemo(() => ({ ...state, ...actions }), [state, actions])
 
