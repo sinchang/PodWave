@@ -156,11 +156,33 @@ export function AudioProvider({ children, artist }: AudioProviderProps) {
   }, [state.meta?.link])
 
   useEffect(() => {
-    if ('mediaSession' in navigator && state.meta) {
-      navigator.mediaSession.metadata = new MediaMetadata({
-        artwork: [{ src: 'https://dummyimage.com/256x256' }],
-        title: state.meta.title,
-        artist,
+    if ('mediaSession' in navigator && state.meta?.audio.coverArt) {
+      let blobURL: string | undefined
+      const image = new Image()
+      image.crossOrigin = 'anonymous'
+      image.src = state.meta.audio.coverArt
+      image.addEventListener('load', async () => {
+        const canvas = document.createElement('canvas')
+        canvas.width = 128
+        canvas.height = 128
+        const context = canvas.getContext('2d')!
+        context.drawImage(image, 0, 0, canvas.width, canvas.height)
+        canvas.toBlob((blob) => {
+          if (!blob) return
+          if (blobURL) URL.revokeObjectURL(blobURL)
+          blobURL = URL.createObjectURL(blob)
+          navigator.mediaSession.metadata = new MediaMetadata({
+            title: state.meta!.title,
+            artist,
+            artwork: [
+              {
+                src: blobURL,
+                type: blob.type,
+                sizes: `${canvas.width}x${canvas.height}`,
+              },
+            ],
+          })
+        })
       })
     }
   }, [state.meta, artist])
