@@ -147,10 +147,10 @@ export default async function RootLayout({
         >
           <NextIntlClientProvider locale={locale} messages={messages}>
             <Waveform className="fixed left-0 top-0 z-10 h-20 w-full opacity-75" />
+            {children}
             <div className="fixed right-4 top-4 z-10">
               <ThemeSwitcher />
             </div>
-            {children}
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>
