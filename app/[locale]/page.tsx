@@ -4,13 +4,14 @@
 import { useDebounce } from 'ahooks'
 import { SearchIcon } from 'lucide-react'
 import Link from 'next/link'
+import type { ApiResponse } from 'podcastdx-client/dist/src/types'
 import React, { ChangeEvent } from 'react'
 
 import { Container } from './Container'
 
 export default function IndexPage() {
   const [searchTerm, setSearchTerm] = React.useState('')
-  const [results, setResults] = React.useState([])
+  const [results, setResults] = React.useState<ApiResponse.Search['feeds']>([])
   const [isSearching, setIsSearching] = React.useState(false)
   const debouncedSearchTerm = useDebounce(searchTerm, { wait: 300 })
 
@@ -20,13 +21,13 @@ export default function IndexPage() {
 
   React.useEffect(() => {
     const searchPod = async () => {
-      let results = []
+      let results: ApiResponse.Search['feeds'] = []
       setIsSearching(true)
       if (debouncedSearchTerm) {
-        const data = await fetch(`/api/search?q=${debouncedSearchTerm}`).then(
-          (res) => res.json()
-        )
-        results = data?.feeds || []
+        const data: ApiResponse.Search = await fetch(
+          `/api/search?q=${debouncedSearchTerm}`
+        ).then((res) => res.json())
+        results = data?.feeds.filter((feed) => feed.itunesId) || []
       }
 
       setIsSearching(false)
@@ -54,24 +55,17 @@ export default function IndexPage() {
       </div>
       {results.length ? (
         <ul className="max-h-[40vh] overflow-auto py-1 shadow-lg">
-          {results.map((item: any) =>
-            item.itunesId ? (
-              <li key={item.id} className="m-4">
-                <Link
-                  href={`/podcast/${item.itunesId}`}
-                  className="flex items-center text-sm font-bold leading-6 text-blue-500 hover:text-blue-700 active:text-blue-900 dark:text-blue-400 dark:hover:text-blue-200 dark:active:text-blue-100"
-                >
-                  <img
-                    src={item.image}
-                    width={48}
-                    height={48}
-                    alt={item.title}
-                  />
-                  <h3 className="ml-4">{item.title}</h3>
-                </Link>
-              </li>
-            ) : null
-          )}
+          {results.map((item: any) => (
+            <li key={item.id} className="m-4">
+              <Link
+                href={`/podcast/${item.itunesId}`}
+                className="flex items-center text-sm font-bold leading-6 text-blue-500 hover:text-blue-700 active:text-blue-900 dark:text-blue-400 dark:hover:text-blue-200 dark:active:text-blue-100"
+              >
+                <img src={item.image} width={48} height={48} alt={item.title} />
+                <h3 className="ml-4">{item.title}</h3>
+              </Link>
+            </li>
+          ))}
         </ul>
       ) : (
         <>
