@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
 
-import { useAudioPlayer } from '~/app/(audio)/AudioProvider'
+import { type AudioData, useAudioPlayer } from '~/app/(audio)/AudioProvider'
 import { Container } from '~/app/[locale]/Container'
 import { FormattedDate } from '~/app/[locale]/podcast/[id]/FormattedDate'
 
@@ -27,12 +27,13 @@ function PlayPauseIcon({
 function EpisodeRow({ episode, id }: { episode: Episode; id: number }) {
   const date = new Date(episode.published)
 
-  const audioPlayerData = useMemo(
+  const audioPlayerData: AudioData = useMemo(
     () => ({
       title: episode.title,
       audio: {
         src: episode.enclosure?.url,
         type: episode.enclosure?.type,
+        coverArt: episode.coverArt,
       },
       link: `/podcast/${id}/${episode.id}`,
     }),
