@@ -4,6 +4,7 @@ import 'focus-visible'
 import { Metadata } from 'next'
 import { Manrope } from 'next/font/google'
 import { notFound } from 'next/navigation'
+import Script from 'next/script'
 import { NextIntlClientProvider } from 'next-intl'
 import { useId } from 'react'
 
@@ -139,6 +140,12 @@ export default async function RootLayout({
       className={`font-sans ${sansFontEn.variable}`}
     >
       <body className="bg-stone-50 dark:bg-neutral-900">
+        <Script
+          async
+          src="https://umami-sinchang.vercel.app/script.js"
+          data-website-id="225f5264-b2ad-4d70-92f6-7d92373469c2"
+          strategy="afterInteractive"
+        ></Script>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
