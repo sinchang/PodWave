@@ -2,8 +2,8 @@
 'use client'
 
 import { useDebounce } from 'ahooks'
-import { SearchIcon } from 'lucide-react'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 import type { ApiResponse } from 'podcastdx-client/dist/src/types'
 import React, { ChangeEvent } from 'react'
 
@@ -14,6 +14,7 @@ export default function IndexPage() {
   const [results, setResults] = React.useState<ApiResponse.Search['feeds']>([])
   const [isSearching, setIsSearching] = React.useState(false)
   const debouncedSearchTerm = useDebounce(searchTerm, { wait: 300 })
+  const t = useTranslations('HomePage')
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value)
@@ -37,10 +38,7 @@ export default function IndexPage() {
     searchPod()
   }, [debouncedSearchTerm])
   return (
-    <Container className="mt-[20vh]">
-      <h1 className="m-8 text-center text-4xl font-bold text-gray-900 dark:text-white">
-        Find Your Podcast
-      </h1>
+    <Container className="mt-[30vh]">
       <div className="relative">
         <input
           type="search"
@@ -48,7 +46,7 @@ export default function IndexPage() {
           id="default-search"
           name="search"
           className="block w-full rounded-lg bg-transparent p-4 pl-10  text-center text-base text-gray-900 outline-none dark:text-white dark:placeholder-gray-400"
-          placeholder="Search Podcast..."
+          placeholder={t('search_podcast')}
           required
           autoComplete="off"
         />
@@ -70,7 +68,7 @@ export default function IndexPage() {
       ) : (
         <>
           {searchTerm && !isSearching ? (
-            <div className="p-4 text-center shadow-lg">No results found.</div>
+            <div className="p-4 text-center shadow-lg">{t('no_results_found')}</div>
           ) : null}
         </>
       )}

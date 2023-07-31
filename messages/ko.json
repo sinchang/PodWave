@@ -1,36 +1,34 @@
 {
-  "Languages": {
-    "placeholder": "언어 선택",
-    "en": "英文",
-    "zh-CN": "简体中文",
-    "zh-TW": "繁體中文",
-    "ja-JP": "日本語",
-    "ko": "한국어"
+  "AudioPlayer": {
+    "current_time": "현재 시간",
+    "fast_forward": "앞으로 {s, plural, =1 {1초} other {#초}}",
+    "mute": "음소거",
+    "pause": "일시 정지",
+    "play": "놀다",
+    "playback_rate": "재생 속도",
+    "rewind": "되감기 {s, plural, =1 {1초} other {#초}}",
+    "unmute": "음소거 해제"
   },
-  "Layout": {
-    "about": "소개",
-    "show_more": "더 보기",
-    "listen": "들어보기",
-    "homepage": "홈페이지",
-    "hosted_by": "주최자"
+  "EpisodePage": {
+    "other_episodes": "다른 에피소드"
+  },
+  "HomePage": {
+    "no_results_found": "결과를 찾을 수 없습니다.",
+    "search_podcast": "팟캐스트 검색..."
   },
   "IndexPage": {
     "episodes": "에피소드",
-    "listen": "들어보기",
-    "show_notes": "방송 노트",
-    "show_notes_aria_label": "에피소드 {episode}의 방송 노트 보기",
-    "play_episode": "에피소드 {episode} 재생",
-    "pause_episode": "에피소드 {episode} 일시 정지"
+    "listen": "듣다",
+    "pause_episode": "에피소드 일시 정지",
+    "play_episode": "에피소드 {episode} 재생해주세요.",
+    "show_notes": "노트 보여주기",
+    "show_notes_aria_label": "에피소드 {episode}의 쇼 노트를 보여주세요."
   },
-  "EpisodePage": { "other_episodes": "다른 에피소드" },
-  "AudioPlayer": {
-    "current_time": "현재 시간",
-    "play": "재생",
-    "pause": "일시 정지",
-    "rewind": "{s, plural, =1 {1초} other {#초}} 되감기",
-    "fast_forward": "{s, plural, =1 {1초} other {#초}} 빨리 감기",
-    "mute": "음소거",
-    "unmute": "음소거 해제",
-    "playback_rate": "재생 속도"
+  "Layout": {
+    "about": "약",
+    "homepage": "홈페이지",
+    "hosted_by": "주최",
+    "listen": "듣다",
+    "show_more": "더 보기"
   }
 }

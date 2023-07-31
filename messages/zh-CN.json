@@ -1,37 +1,34 @@
 {
-  "Languages": {
-    "placeholder": "选择语言",
-    "en": "英文",
-    "zh-CN": "简体中文",
-    "zh-TW": "繁體中文",
-    "ja-JP": "日本語"
-  },
-  "Layout": {
-    "about": "介绍",
-    "show_more": "展开",
-    "listen": "收听方式",
-    "homepage": "首页",
-    "hosted_by": "主播"
-  },
-  "IndexPage": {
-    "episodes": "节目列表",
-    "listen": "播放",
-    "show_notes": "本集介绍",
-    "show_notes_aria_label": "{episode} 的本集介绍",
-    "play_episode": "播放单集 {episode}",
-    "pause_episode": "暂停单集 {episode}"
-  },
-  "EpisodePage": {
-    "other_episodes": "其他节目"
-  },
   "AudioPlayer": {
     "current_time": "当前时间",
-    "play": "播放",
-    "pause": "暂停",
-    "rewind": "倒退{s}秒",
-    "fast_forward": "快进{s}秒",
+    "fast_forward": "快进 {s, plural, =1 {1 秒} other {# 秒}}",
     "mute": "静音",
-    "unmute": "取消静音",
-    "playback_rate": "播放速度"
+    "pause": "暂停",
+    "play": "玩",
+    "playback_rate": "播放速率",
+    "rewind": "倒带 {s, plural, =1 {1 秒} other {# 秒}}",
+    "unmute": "取消靜音"
+  },
+  "EpisodePage": {
+    "other_episodes": "其他剧集"
+  },
+  "HomePage": {
+    "no_results_found": "未找到结果。",
+    "search_podcast": "搜索播客..."
+  },
+  "IndexPage": {
+    "episodes": "剧集",
+    "listen": "听",
+    "pause_episode": "暂停剧集 {episode}",
+    "play_episode": "播放剧集{episode}",
+    "show_notes": "显示笔记",
+    "show_notes_aria_label": "显示第{episode}集的笔记"
+  },
+  "Layout": {
+    "about": "关于",
+    "homepage": "主页",
+    "hosted_by": "主办",
+    "listen": "听",
+    "show_more": "显示更多"
   }
 }

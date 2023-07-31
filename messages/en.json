@@ -1,11 +1,4 @@
 {
-  "Languages": {
-    "placeholder": "Select a language",
-    "en": "英文",
-    "zh-CN": "简体中文",
-    "zh-TW": "繁體中文",
-    "ja-JP": "日本語"
-  },
   "Layout": {
     "about": "About",
     "show_more": "Show more",
@@ -23,6 +16,10 @@
   },
   "EpisodePage": {
     "other_episodes": "Other episodes"
+  },
+  "HomePage": {
+    "search_podcast": "Search Podcast...",
+    "no_results_found": "No results found."
   },
   "AudioPlayer": {
     "current_time": "Current time",
