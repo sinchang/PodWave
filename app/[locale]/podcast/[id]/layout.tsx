@@ -23,8 +23,8 @@ export async function generateMetadata({
 
   return {
     title: {
-      default: info.title,
-      template: `%s | ${info.title}`,
+      default: `${info.title} | Podvoic`,
+      template: `%s | ${info.title} | Podvoic`,
     },
     description,
     keywords: info.title,
@@ -34,8 +34,8 @@ export async function generateMetadata({
     },
     openGraph: {
       title: {
-        default: info.title,
-        template: `%s | ${info.title}`,
+        default: `${info.title} | Podvoic`,
+        template: `%s | ${info.title} ｜ Podvoic`,
       },
       description,
       locale: params.locale,
