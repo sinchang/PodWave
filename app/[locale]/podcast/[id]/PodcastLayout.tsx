@@ -37,7 +37,7 @@ function AboutSection(
           !isExpanded && 'lg:line-clamp-4'
         )}
       >
-        {mounted && (
+        {mounted ? (
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
@@ -56,9 +56,9 @@ function AboutSection(
           >
             {compiler(content)}
           </ReactMarkdown>
-        )}
+        ) : null}
       </div>
-      {!isExpanded && isTooLong && (
+      {!isExpanded && isTooLong ? (
         <button
           type="button"
           className="mt-2 hidden text-sm font-bold leading-6 text-blue-500 hover:text-blue-700 active:text-blue-900 dark:text-blue-400 dark:hover:text-blue-200 dark:active:text-blue-100 lg:inline-block"
@@ -66,7 +66,7 @@ function AboutSection(
         >
           {t('show_more')}
         </button>
-      )}
+      ) : null}
     </section>
   )
 }
@@ -138,14 +138,14 @@ export function PodcastLayout({
             <div className="mt-2 flex gap-6 text-sm font-bold leading-7 text-stone-900">
               {podcastConfig.hosts.map((host, hostIndex) => (
                 <Fragment key={host.name}>
-                  {hostIndex !== 0 && (
+                  {hostIndex !== 0 ? (
                     <span
                       aria-hidden="true"
                       className="text-stone-400 dark:text-neutral-600"
                     >
                       /
                     </span>
-                  )}
+                  ) : null}
                   <Link
                     href={host.link ?? '/'}
                     target="_blank"
@@ -172,14 +172,14 @@ export function PodcastLayout({
           <div className="mt-2 flex gap-6 text-sm font-bold leading-7 text-stone-900 dark:text-neutral-200">
             {podcastConfig.hosts?.map((host, hostIndex) => (
               <Fragment key={host.name}>
-                {hostIndex !== 0 && (
+                {hostIndex !== 0 ? (
                   <span
                     aria-hidden="true"
                     className="text-stone-400 dark:text-neutral-600"
                   >
                     /
                   </span>
-                )}
+                ) : null}
                 <Link
                   href={host.link ?? '/'}
                   target="_blank"

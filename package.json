@@ -47,6 +47,7 @@
     "@types/html-to-text": "^9.0.1",
     "csv-reader": "^1.0.12",
     "encoding": "^0.1.13",
+    "eslint-config-prettier": "^8.9.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "prettier": "^3.0.0",
     "prettier-plugin-packagejson": "^2.4.5",

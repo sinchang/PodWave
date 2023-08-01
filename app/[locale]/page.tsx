@@ -68,7 +68,9 @@ export default function IndexPage() {
       ) : (
         <>
           {searchTerm && !isSearching ? (
-            <div className="p-4 text-center shadow-lg">{t('no_results_found')}</div>
+            <div className="p-4 text-center shadow-lg">
+              {t('no_results_found')}
+            </div>
           ) : null}
         </>
       )}

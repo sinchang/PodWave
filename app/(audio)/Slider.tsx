@@ -100,11 +100,11 @@ export function Slider(props: SliderProps) {
       {...groupProps}
       className="absolute inset-x-0 bottom-full flex flex-auto touch-none items-center gap-6 md:relative"
     >
-      {props.label && (
+      {props.label ? (
         <label className="sr-only" {...labelProps}>
           {props.label}
         </label>
-      )}
+      ) : null}
       <div
         {...trackProps}
         onMouseDown={(...args) => {

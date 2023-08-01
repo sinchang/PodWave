@@ -147,13 +147,14 @@ export default async function RootLayout({
       className={`font-sans ${sansFontEn.variable}`}
     >
       <body className="bg-stone-50 dark:bg-neutral-900">
-        {!isDev && <Script
-          async
-          src="https://umami-sinchang.vercel.app/script.js"
-          data-website-id="225f5264-b2ad-4d70-92f6-7d92373469c2"
-          strategy="afterInteractive"
-        ></Script>
-        }
+        {!isDev ? (
+          <Script
+            async
+            src="https://umami-sinchang.vercel.app/script.js"
+            data-website-id="225f5264-b2ad-4d70-92f6-7d92373469c2"
+            strategy="afterInteractive"
+          ></Script>
+        ) : null}
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

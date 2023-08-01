@@ -100,7 +100,7 @@ function EpisodeRow({ episode, id }: { episode: Episode; id: number }) {
               </Link>
             </div>
           </div>
-          {episode.coverArt && (
+          {episode.coverArt ? (
             <Link
               href={`/podcast/${id}/${episode.id}`}
               className="relative ml-2 block shrink-0 lg:ml-4"
@@ -114,7 +114,7 @@ function EpisodeRow({ episode, id }: { episode: Episode; id: number }) {
                 unoptimized
               />
             </Link>
-          )}
+          ) : null}
         </div>
       </Container>
     </article>

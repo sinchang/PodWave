@@ -29,9 +29,9 @@ export function ThemeSwitcher() {
       className="rounded-lg bg-stone-50 p-1.5 shadow-xl dark:bg-neutral-900"
       onClick={toggleTheme}
     >
-      {theme === 'system' && <SystemThemeIcon />}
-      {theme === 'dark' && <DarkThemeIcon />}
-      {theme === 'light' && <LightThemeIcon />}
+      {theme === 'system' ? <SystemThemeIcon /> : null}
+      {theme === 'dark' ? <DarkThemeIcon /> : null}
+      {theme === 'light' ? <LightThemeIcon /> : null}
     </button>
   )
 }

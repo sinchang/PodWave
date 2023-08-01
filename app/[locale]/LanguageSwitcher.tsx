@@ -3,7 +3,7 @@
 import type { AriaSelectProps } from '@react-types/select'
 import { GlobeIcon } from 'lucide-react'
 import { useLocale } from 'next-intl'
-import { usePathname, useRouter } from 'next-intl/client';
+import { usePathname, useRouter } from 'next-intl/client'
 import { Key, useRef, useTransition } from 'react'
 import {
   HiddenSelect,
@@ -49,7 +49,7 @@ export function Select<T extends object>(props: AriaSelectProps<T>) {
       >
         <GlobeIcon size="1rem" />
       </button>
-      {state.isOpen && (
+      {state.isOpen ? (
         <Popover
           state={state}
           triggerRef={ref}
@@ -58,26 +58,32 @@ export function Select<T extends object>(props: AriaSelectProps<T>) {
         >
           <ListBox {...menuProps} state={state} />
         </Popover>
-      )}
+      ) : null}
     </div>
   )
 }
 
 export function LanguageSwitcher() {
   const locale = useLocale()
-  const [isPending, startTransition] = useTransition();
-  const router = useRouter();
-  const pathname = usePathname();
+  const [isPending, startTransition] = useTransition()
+  const router = useRouter()
+  const pathname = usePathname()
 
   function onSelectChange(nextLocale: Key) {
     startTransition(() => {
-      router.replace(pathname, { locale: nextLocale as string });
-    });
+      router.replace(pathname, { locale: nextLocale as string })
+    })
   }
 
   return (
-    <Select selectedKey={locale} label="Select a language" items={i18n.languages} onSelectionChange={onSelectChange} isDisabled={isPending}>
-      {language => <Item key={language.locale}>{language.title}</Item>}
+    <Select
+      selectedKey={locale}
+      label="Select a language"
+      items={i18n.languages}
+      onSelectionChange={onSelectChange}
+      isDisabled={isPending}
+    >
+      {(language) => <Item key={language.locale}>{language.title}</Item>}
     </Select>
   )
 }

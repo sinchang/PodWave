@@ -111,6 +111,9 @@ devDependencies:
   encoding:
     specifier: ^0.1.13
     version: 0.1.13
+  eslint-config-prettier:
+    specifier: ^8.9.0
+    version: 8.9.0(eslint@8.45.0)
   eslint-plugin-simple-import-sort:
     specifier: ^10.0.0
     version: 10.0.0(eslint@8.45.0)
@@ -5185,6 +5188,18 @@ packages:
       - supports-color
     dev: false
 
+  /eslint-config-prettier@8.9.0(eslint@8.45.0):
+    resolution:
+      {
+        integrity: sha512-+sbni7NfVXnOpnRadUA8S28AUlsZt9GjgFvABIRL9Hkn8KqNzOp+7Lw4QWtrwn20KzU3wqu1QoOj2m+7rKRqkA==,
+      }
+    hasBin: true
+    peerDependencies:
+      eslint: '>=7.0.0'
+    dependencies:
+      eslint: 8.45.0
+    dev: true
+
   /eslint-import-resolver-node@0.3.7:
     resolution:
       {
@@ -6414,7 +6429,10 @@ packages:
     dev: false
 
   /js-tokens@4.0.0:
-    resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
+    resolution:
+      {
+        integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==,
+      }
 
   /js-yaml@4.1.0:
     resolution:
