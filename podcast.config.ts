@@ -1,6 +1,8 @@
-import getPodcastPlatformLinks from 'podcast-platform-links'
+import getPodcastPlatformLinks, { Platform } from 'podcast-platform-links'
 import PodcastIndexClient from 'podcastdx-client'
 import { cache } from 'react'
+
+const REMOVED_PLATFORM: Platform[] = ['podStation']
 
 const client = new PodcastIndexClient({
   key: process.env.PODCAST_INDEX_API_KEY,
@@ -16,7 +18,7 @@ export const getPodcastConfig = cache(async (itunesId: number) => {
       ...platforms.map((platform) => ({
         name: platform.platform,
         link: platform.link,
-      })),
+      })).filter(platform => !REMOVED_PLATFORM.includes(platform.name)),
       {
         name: 'RSS',
         link: feed.url,
