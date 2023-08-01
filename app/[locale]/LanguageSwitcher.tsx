@@ -44,6 +44,7 @@ export function Select<T extends object>(props: AriaSelectProps<T>) {
       />
       <button
         {...mergeProps(buttonProps, focusProps)}
+        aria-label="language-switcher"
         ref={ref}
         className={`rounded-lg bg-stone-50 p-1.5 shadow-xl dark:bg-neutral-900`}
       >

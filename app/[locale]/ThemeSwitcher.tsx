@@ -28,6 +28,7 @@ export function ThemeSwitcher() {
       type="button"
       className="rounded-lg bg-stone-50 p-1.5 shadow-xl dark:bg-neutral-900"
       onClick={toggleTheme}
+      aria-label="theme-switcher"
     >
       {theme === 'system' ? <SystemThemeIcon /> : null}
       {theme === 'dark' ? <DarkThemeIcon /> : null}
