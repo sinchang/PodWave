@@ -12,7 +12,10 @@ import { getMessages } from '~/app/getMessages'
 import { ThemeProvider } from '~/app/ThemeProvider'
 import { i18n } from '~/i18n'
 
+import { LanguageSwitcher } from './LanguageSwitcher'
 import { ThemeSwitcher } from './ThemeSwitcher'
+
+const isDev = process.env.NODE_ENV === 'development'
 
 const sansFontEn = Manrope({
   weight: ['400', '500', '700'],
@@ -140,12 +143,13 @@ export default async function RootLayout({
       className={`font-sans ${sansFontEn.variable}`}
     >
       <body className="bg-stone-50 dark:bg-neutral-900">
-        <Script
+        {!isDev && <Script
           async
           src="https://umami-sinchang.vercel.app/script.js"
           data-website-id="225f5264-b2ad-4d70-92f6-7d92373469c2"
           strategy="afterInteractive"
         ></Script>
+        }
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -157,6 +161,7 @@ export default async function RootLayout({
             {children}
             <div className="fixed right-4 top-4 z-10">
               <ThemeSwitcher />
+              <LanguageSwitcher />
             </div>
           </NextIntlClientProvider>
         </ThemeProvider>

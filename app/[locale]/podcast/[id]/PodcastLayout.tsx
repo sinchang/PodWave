@@ -6,13 +6,12 @@ import { ActivityIcon, Mic2Icon, UserIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
-import React, { Fragment, useEffect, useId, useMemo, useState } from 'react'
+import React, { Fragment, useEffect, useMemo, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
 import { AudioPlayer } from '~/app/(audio)/AudioPlayer'
 import { PodcastDirectoryLink } from '~/app/[locale]/podcast/[id]/PodcastDirectoryLink'
-import { ThemeSwitcher } from '~/app/[locale]/ThemeSwitcher'
 
 const compiler = compile()
 function AboutSection(
