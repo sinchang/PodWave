@@ -4,7 +4,7 @@
     "fast_forward": "快进 {s, plural, =1 {1 秒} other {# 秒}}",
     "mute": "静音",
     "pause": "暂停",
-    "play": "玩",
+    "play": "播放",
     "playback_rate": "播放速率",
     "rewind": "倒带 {s, plural, =1 {1 秒} other {# 秒}}",
     "unmute": "取消靜音"
@@ -18,7 +18,7 @@
   },
   "IndexPage": {
     "episodes": "剧集",
-    "listen": "听",
+    "listen": "播放",
     "pause_episode": "暂停剧集 {episode}",
     "play_episode": "播放剧集{episode}",
     "show_notes": "显示笔记",
@@ -28,7 +28,7 @@
     "about": "关于",
     "homepage": "主页",
     "hosted_by": "主办",
-    "listen": "听",
+    "listen": "播放",
     "show_more": "显示更多"
   }
 }

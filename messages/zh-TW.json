@@ -4,7 +4,7 @@
     "fast_forward": "快進 {s, plural, =1 {1 秒} other {# 秒}}",
     "mute": "靜音",
     "pause": "暫停",
-    "play": "玩",
+    "play": "播放",
     "playback_rate": "播放速率",
     "rewind": "倒帶 {s, plural, =1 {1 秒} other {# 秒}}",
     "unmute": "取消靜音"
@@ -18,7 +18,7 @@
   },
   "IndexPage": {
     "episodes": "集數",
-    "listen": "聽",
+    "listen": "播放",
     "pause_episode": "暫停集數 {episode}",
     "play_episode": "播放第{episode}集",
     "show_notes": "顯示筆記",
@@ -28,7 +28,7 @@
     "about": "關於",
     "homepage": "主頁",
     "hosted_by": "主辦",
-    "listen": "聽",
+    "listen": "播放",
     "show_more": "顯示更多"
   }
 }
