@@ -104,6 +104,10 @@ export async function generateMetadata({ params }: { params: RootParams }) {
       { media: '(prefers-color-scheme: dark)', color: '#1c1917' },
       { media: '(prefers-color-scheme: light)', color: '#fafaf9' },
     ],
+    icons: {
+      icon: '/favicon.ico',
+      apple: '/apple-touch-icon.png',
+    },
     openGraph: {
       locale: params.locale,
       type: 'website',
