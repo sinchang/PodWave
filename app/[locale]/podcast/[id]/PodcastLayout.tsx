@@ -81,7 +81,7 @@ export function PodcastLayout({
   const t = useTranslations('Layout')
 
   return (
-    <>
+    <div suppressHydrationWarning>
       <header className="lg:fixed lg:inset-y-0 lg:left-0 lg:flex lg:w-112 lg:items-start lg:overflow-y-auto xl:w-120">
         <div className="relative z-10 mx-auto px-4 pb-4 pt-10 sm:px-6 md:max-w-2xl md:px-4 lg:min-h-full lg:flex-auto lg:border-x lg:border-stone-200 lg:px-8 lg:py-12 dark:lg:border-neutral-800 xl:px-12">
           <Link
@@ -194,6 +194,6 @@ export function PodcastLayout({
       <div className="fixed inset-x-0 bottom-0 z-10 lg:left-112 xl:left-120">
         <AudioPlayer />
       </div>
-    </>
+    </div>
   )
 }
