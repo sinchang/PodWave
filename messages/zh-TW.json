@@ -18,7 +18,7 @@
   },
   "IndexPage": {
     "episodes": "集數",
-    "listen": "播放",
+    "listen": "收聽",
     "pause_episode": "暫停集數 {episode}",
     "play_episode": "播放第{episode}集",
     "show_notes": "顯示筆記",
@@ -28,7 +28,7 @@
     "about": "關於",
     "homepage": "主頁",
     "hosted_by": "主辦",
-    "listen": "播放",
+    "listen": "收聽",
     "show_more": "顯示更多"
   }
 }

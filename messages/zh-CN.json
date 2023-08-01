@@ -18,7 +18,7 @@
   },
   "IndexPage": {
     "episodes": "剧集",
-    "listen": "播放",
+    "listen": "收听",
     "pause_episode": "暂停剧集 {episode}",
     "play_episode": "播放剧集{episode}",
     "show_notes": "显示笔记",
@@ -28,7 +28,7 @@
     "about": "关于",
     "homepage": "主页",
     "hosted_by": "主办",
-    "listen": "播放",
+    "listen": "收听",
     "show_more": "显示更多"
   }
 }
