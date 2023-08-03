@@ -38,6 +38,7 @@ type Episode = {
     type: string
     length: number
   }
+  language: string
 }
 
 type Host = {

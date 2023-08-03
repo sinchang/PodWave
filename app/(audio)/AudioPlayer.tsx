@@ -1,9 +1,12 @@
 'use client'
 
+import axios from 'axios'
+import { TrashIcon } from 'lucide-react'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { useEffect, useRef, useState } from 'react'
 
+import { Constants } from '../utils/constants'
 import { useAudioPlayer } from './AudioProvider'
 import { ForwardButton } from './ForwardButton'
 import { MuteButton } from './MuteButton'
@@ -11,6 +14,7 @@ import { PlaybackRateButton } from './PlaybackRateButton'
 import { PlayButton } from './PlayButton'
 import { RewindButton } from './RewindButton'
 import { Slider } from './Slider'
+import { useTranscriber } from './hooks/useTranscriber'
 
 function parseTime(seconds: number) {
   const hours = Math.floor(seconds / 3600)
@@ -22,16 +26,61 @@ function parseTime(seconds: number) {
 function formatHumanTime(seconds: number) {
   // TODO: i18n
   const [h, m, s] = parseTime(seconds)
-  return `${h} hour${h === 1 ? '' : 's'}, ${m} minute${
-    m === 1 ? '' : 's'
-  }, ${s} second${s === 1 ? '' : 's'}`
+  return `${h} hour${h === 1 ? '' : 's'}, ${m} minute${m === 1 ? '' : 's'
+    }, ${s} second${s === 1 ? '' : 's'}`
 }
+
+async function getAudioFromDownload(
+  { data, mimeType }: {
+    data: ArrayBuffer,
+    mimeType: string,
+  }
+) {
+  const audioCTX = new AudioContext({
+    sampleRate: Constants.SAMPLING_RATE,
+  });
+  const blobUrl = URL.createObjectURL(
+    new Blob([data], { type: "audio/*" }),
+  );
+  const decoded = await audioCTX.decodeAudioData(data);
+  return {
+    buffer: decoded,
+    url: blobUrl,
+    mimeType: mimeType,
+  }
+};
+
+async function downloadAudioFromUrl(
+  url: string
+) {
+  if (url) {
+    try {
+      const { data, headers } = (await axios.get(url, {
+        responseType: "arraybuffer",
+      })) as {
+        data: ArrayBuffer;
+        headers: { "content-type": string };
+      };
+
+      let mimeType = headers["content-type"];
+      if (!mimeType || mimeType === "audio/wave") {
+        mimeType = "audio/wav";
+      }
+      return { data, mimeType };
+    } catch (error) {
+      console.log("Request failed or aborted", error);
+      return undefined
+    }
+  }
+}
+
 
 export function AudioPlayer() {
   const t = useTranslations('AudioPlayer')
   const player = useAudioPlayer(undefined)
   const wasPlayingRef = useRef(false)
   const [currentTime, setCurrentTime] = useState(player.currentTime)
+  const transcriber = useTranscriber();
 
   useEffect(() => {
     setCurrentTime(undefined)
@@ -41,6 +90,18 @@ export function AudioPlayer() {
     format: formatHumanTime,
     resolvedOptions: Intl.NumberFormat().resolvedOptions,
   }
+
+  const handleTranscribe = async (url: string) => {
+    const downloadData = await downloadAudioFromUrl(url)
+
+    if (!downloadData) return
+
+    const audioData = await getAudioFromDownload(downloadData)
+
+    transcriber.start(audioData.buffer)
+  }
+
+  console.log(transcriber.output)
 
   if (!player.meta) {
     return null
@@ -91,6 +152,12 @@ export function AudioPlayer() {
           <div className="flex items-center gap-4">
             <div className="flex items-center">
               <PlaybackRateButton player={player} />
+            </div>
+            <div className="flex items-center">
+              <TrashIcon onClick={() => {
+                if (!player.meta?.audio.src) return
+                handleTranscribe(player.meta.audio.src)
+              }} />
             </div>
             <div className="hidden items-center md:flex">
               <MuteButton player={player} />

@@ -25,6 +25,7 @@ export function EpisodePage({ episode, id }: { episode: Episode; id: number }) {
         src: episode.enclosure.url,
         type: episode.enclosure.type,
         coverArt: episode.coverArt,
+        language: episode.language
       },
       link: `/podcast/${id}/${episode.id}`,
     }),

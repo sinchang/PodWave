@@ -80,6 +80,7 @@ export const getPodcastEpisodes = cache(async (itunesId: number) => {
       length: item.enclosureLength,
     },
     coverArt: item.image,
+    language: item.feedLanguage
   }))
 
   return episodes
