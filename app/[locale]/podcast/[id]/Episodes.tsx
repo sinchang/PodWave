@@ -110,6 +110,7 @@ function EpisodeRow({ episode, id }: { episode: Episode; id: number }) {
                 alt={episode.title}
                 width={136}
                 height={136}
+                unoptimized
                 className="h-[90px] w-[90px] rounded-lg lg:h-[136px] lg:w-[136px] lg:rounded-xl"
               />
             </Link>

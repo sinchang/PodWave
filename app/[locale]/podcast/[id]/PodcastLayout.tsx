@@ -97,6 +97,7 @@ export function PodcastLayout({
               width={500}
               height={500}
               priority
+              unoptimized
             />
             <div className="absolute inset-0 rounded-lg ring-1 ring-inset ring-black/10 dark:ring-white/10 sm:rounded-xl lg:rounded-2xl" />
           </Link>
