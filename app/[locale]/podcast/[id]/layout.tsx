@@ -29,8 +29,8 @@ export async function generateMetadata({
     description,
     keywords: info.title,
     icons: {
-      icon: info.coverArt,
-      apple: info.coverArt,
+      icon: '/favicon.ico',
+      apple: '/apple-touch-icon.png',
     },
     openGraph: {
       title: {
