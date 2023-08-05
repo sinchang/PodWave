@@ -28,12 +28,10 @@ export async function generateMetadata({
       type: 'website',
       images: data.coverArt ? [getOpenGraphImage(data.coverArt)] : undefined,
     },
-    icons: data.coverArt
-      ? {
-          icon: data.coverArt,
-          apple: data.coverArt,
-        }
-      : undefined,
+    icons: {
+      icon: '/favicon.ico',
+      apple: '/apple-touch-icon.png',
+    },
   } satisfies Metadata
 }
 
