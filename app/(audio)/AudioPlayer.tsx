@@ -1,5 +1,6 @@
 'use client'
 
+import { DownloadIcon } from 'lucide-react'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { useEffect, useRef, useState } from 'react'
@@ -95,6 +96,12 @@ export function AudioPlayer() {
             <div className="hidden items-center md:flex">
               <MuteButton player={player} />
             </div>
+            <a href={player.meta.audio.src} download className="hidden md:flex">
+              <DownloadIcon
+                strokeWidth={3}
+                className="h-4 w-4 stroke-neutral-500 hover:stroke-neutral-700 dark:stroke-neutral-400 dark:hover:stroke-neutral-300"
+              />
+            </a>
           </div>
         </div>
       </div>
