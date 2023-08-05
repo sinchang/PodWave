@@ -14,10 +14,12 @@ export const getPodcastConfig = cache(async (itunesId: number) => {
   const platforms = getPodcastPlatformLinks(itunesId, feed.url)
   return {
     platforms: [
-      ...platforms.map((platform) => ({
-        name: platform.platform,
-        link: platform.link,
-      })).filter(platform => !REMOVED_PLATFORM.includes(platform.name)),
+      ...platforms
+        .map((platform) => ({
+          name: platform.platform,
+          link: platform.link,
+        }))
+        .filter((platform) => !REMOVED_PLATFORM.includes(platform.name)),
       {
         name: 'RSS',
         link: feed.url,

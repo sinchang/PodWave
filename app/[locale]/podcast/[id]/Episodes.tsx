@@ -7,7 +7,9 @@ import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
 
+import { parseTime } from '~/app/(audio)/AudioPlayer'
 import { type AudioData, useAudioPlayer } from '~/app/(audio)/AudioProvider'
+import { formatTime } from '~/app/(audio)/Slider'
 import { Container } from '~/app/[locale]/Container'
 import { FormattedDate } from '~/app/[locale]/podcast/[id]/FormattedDate'
 
@@ -58,10 +60,15 @@ function EpisodeRow({ episode, id }: { episode: Episode; id: number }) {
             >
               <Link href={`/podcast/${id}/${episode.id}`}>{episode.title}</Link>
             </h2>
-            <FormattedDate
-              date={date}
-              className="order-first font-mono text-sm leading-7 text-stone-500 dark:text-neutral-500"
-            />
+            <div className="order-first">
+              <span className="rounded-lg border px-2 py-1 font-mono text-xs text-stone-500 dark:text-neutral-500">
+                {formatTime(parseTime(episode.duration))}
+              </span>
+              <FormattedDate
+                date={date}
+                className="pl-2 font-mono text-sm leading-7 text-stone-500 dark:text-neutral-500"
+              />
+            </div>
             <p className="mt-1 line-clamp-2 break-all text-base leading-7 text-stone-500 dark:text-neutral-500">
               {compiler(episode.description)}
             </p>

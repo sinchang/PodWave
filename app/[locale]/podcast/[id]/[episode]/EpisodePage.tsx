@@ -8,8 +8,10 @@ import React, { useMemo } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
+import { parseTime } from '~/app/(audio)/AudioPlayer'
 import { type AudioData, useAudioPlayer } from '~/app/(audio)/AudioProvider'
 import { PlayButton } from '~/app/(audio)/PlayButton'
+import { formatTime } from '~/app/(audio)/Slider'
 import { Container } from '~/app/[locale]/Container'
 import { FormattedDate } from '~/app/[locale]/podcast/[id]/FormattedDate'
 
@@ -50,10 +52,15 @@ export function EpisodePage({ episode, id }: { episode: Episode; id: number }) {
               <h1 className="mt-2 text-4xl font-bold text-stone-900 dark:text-neutral-100">
                 {episode.title}
               </h1>
-              <FormattedDate
-                date={date}
-                className="order-first font-mono text-sm leading-7 text-stone-500 dark:text-neutral-500"
-              />
+              <div className="order-first">
+                <span className="rounded-lg border px-2 py-1 font-mono text-xs text-stone-500 dark:text-neutral-500">
+                  {formatTime(parseTime(episode.duration))}
+                </span>
+                <FormattedDate
+                  date={date}
+                  className="pl-2 font-mono text-sm leading-7 text-stone-500 dark:text-neutral-500"
+                />
+              </div>
             </div>
           </div>
           <p className="ml-24 mt-3 line-clamp-3 text-lg font-medium leading-8 text-stone-500 dark:text-neutral-500">
