@@ -1,5 +1,5 @@
+import PodcastIndexClient from 'podcast-index-client'
 import getPodcastPlatformLinks, { Platform } from 'podcast-platform-links'
-import PodcastIndexClient from 'podcastdx-client'
 import { cache } from 'react'
 
 const REMOVED_PLATFORM: Platform[] = ['podStation']
@@ -7,7 +7,6 @@ const REMOVED_PLATFORM: Platform[] = ['podStation']
 const client = new PodcastIndexClient({
   key: process.env.PODCAST_INDEX_API_KEY,
   secret: process.env.PODCAST_INDEX_API_SECRET,
-  disableAnalytics: true,
 })
 
 export const getPodcastConfig = cache(async (itunesId: number) => {
