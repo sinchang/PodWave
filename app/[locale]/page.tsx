@@ -4,7 +4,7 @@
 import { useDebounce } from 'ahooks'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
-import type { ApiResponse } from 'podcastdx-client/dist/src/types'
+import type { ApiResponse } from 'podcast-index-client/dist/src/types'
 import React, { ChangeEvent } from 'react'
 
 import { Container } from './Container'
