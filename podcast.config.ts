@@ -2,7 +2,7 @@ import PodcastIndexClient from 'podcast-index-client'
 import getPodcastPlatformLinks, { Platform } from 'podcast-platform-links'
 import { cache } from 'react'
 
-const REMOVED_PLATFORM: Platform[] = ['podStation']
+const REMOVED_PLATFORM: Platform[] = ['podStation', 'Podvine']
 
 const client = new PodcastIndexClient({
   key: process.env.PODCAST_INDEX_API_KEY,
