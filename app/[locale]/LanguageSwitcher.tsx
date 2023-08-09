@@ -35,7 +35,7 @@ export function Select<T extends object>(props: AriaSelectProps<T>) {
   let { focusProps } = useFocusRing()
 
   return (
-    <div className="relative ml-2 inline-flex flex-row">
+    <div className="hidden relative ml-2 md:inline-flex flex-row">
       <HiddenSelect
         state={state}
         triggerRef={ref}

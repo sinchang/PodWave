@@ -13,6 +13,7 @@ import { ThemeProvider } from '~/app/ThemeProvider'
 import { i18n } from '~/i18n'
 
 import { LanguageSwitcher } from './LanguageSwitcher'
+import { Search } from './Search'
 import { ThemeSwitcher } from './ThemeSwitcher'
 
 const isDev = process.env.NODE_ENV === 'development'
@@ -165,6 +166,7 @@ export default async function RootLayout({
             <Waveform className="fixed left-0 top-0 z-10 h-20 w-full opacity-75" />
             {children}
             <div className="fixed right-4 top-4 z-10">
+              <Search />
               <ThemeSwitcher />
               <LanguageSwitcher />
             </div>
