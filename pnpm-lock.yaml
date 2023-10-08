@@ -53,8 +53,8 @@ dependencies:
     specifier: ^6.0.1
     version: 6.0.1(encoding@0.1.13)
   podcast-platform-links:
-    specifier: ^5.1.0
-    version: 5.1.0
+    specifier: ^5.1.1
+    version: 5.1.1
   postcss:
     specifier: 8.4.26
     version: 8.4.26
@@ -5751,8 +5751,8 @@ packages:
       - encoding
     dev: false
 
-  /podcast-platform-links@5.1.0:
-    resolution: {integrity: sha512-cwZuzDYfLk6csR4obBbAAArgt0ZckS74McK79PgTUT79B1vgFgb9G1Dd/J6Dqom0yGX4KXLKm5AKOZXGAR+K2Q==}
+  /podcast-platform-links@5.1.1:
+    resolution: {integrity: sha512-AS+IQllzj4mjQxJM9WvQtKAOaYIETwUFjtXFMVQE3YckQJwYd5QgGRbKh7jiYwAKZLGQa22WGjy4Wp26wfUT/w==}
     dev: false
 
   /postcss-focus-visible@9.0.0(postcss@8.4.26):

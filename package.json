@@ -26,7 +26,7 @@
     "next-intl": "^2.18.0",
     "next-themes": "^0.2.1",
     "podcast-index-client": "^6.0.1",
-    "podcast-platform-links": "^5.1.0",
+    "podcast-platform-links": "^5.1.1",
     "postcss": "8.4.26",
     "postcss-focus-visible": "^9.0.0",
     "react": "18.2.0",
