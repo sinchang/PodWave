@@ -1,7 +1,7 @@
 import { ImageResponse, NextRequest, NextResponse } from 'next/server'
 
 export const runtime = 'edge'
-export const revalidate = 60
+export const revalidate = 60 * 60 * 24 * 30
 
 export async function GET(req: NextRequest) {
   const cover = new URL(req.url).searchParams.get('cover')
