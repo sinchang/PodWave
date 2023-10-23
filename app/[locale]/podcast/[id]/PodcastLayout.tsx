@@ -157,6 +157,11 @@ export function PodcastLayout({
               ))}
             </div>
           </section>
+          <section className='mt-10 hidden lg:mt-12 lg:block'>
+            <h2 className="flex items-center text-sm font-medium leading-7 text-stone-900 dark:text-neutral-100">
+              <span className="ml-2.5">&copy; Podvoic 2023 | Made in Shanghai | Contact via <a href='mailto:hi@podvoic.com'>Email</a></span>
+            </h2>
+          </section>
         </div>
       </header>
       <main className="border-t border-stone-200 dark:border-neutral-800 lg:relative lg:mb-28 lg:ml-112 lg:border-t-0 xl:ml-120">
